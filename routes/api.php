@@ -18,9 +18,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('ventas', function(){ 
+/* Route::get('ventas', function(){ 
     return response()->json();
-});
+}); */
 
 /* Route::post('guardarVentas', function(){});
 Route::get('obtenerVentas', function(){});
@@ -34,4 +34,4 @@ Route::put('ventas', function(){});
 Route::get('ventas/{id}', function(){});
 Route::delete('ventas/{id}', function(){}); */
 
- Route::resource('ventas', "App\Http\Controllers\VentaController");
+ //Route::resource('ventas', "App\Http\Controllers\VentaController");

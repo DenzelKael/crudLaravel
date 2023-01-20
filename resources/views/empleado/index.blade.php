@@ -1,4 +1,14 @@
-VIsta Empleado
+@extends('layouts.app')
+@section('content')
+<div class="container">
+
+@if (Session::has('mensaje'))
+{{Session::get('mensaje')}}
+@endif
+
+
+<a class="btn btn-success" href="{{url('empleado/create')}}">Registrar Nuevo Empleado</a>
+<br><br>
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
@@ -14,18 +24,24 @@ VIsta Empleado
     <tbody>
         @foreach ($empleados as $empleado)
             <tr>
-                <td>{{ $empleado->id }}</td>
+                <td>
+                <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$empleado->foto}}" width="100" alt="" srcset="">
+                </td>
                 <td>{{ $empleado->foto }}</td>
                 <td>{{ $empleado->nombre }}</td>
                 <td>{{ $empleado->paterno }}</td>
                 <td>{{ $empleado->materno }}</td>
                 <td>{{ $empleado->correo }}</td>
-                <td>Editar|
+                <td>
+                <a href="{{url('empleado/'.$empleado->id.'/edit')}}" class="btn btn-warning">Editar</a>
+                
 
-                    <form action="{{ url('empleado/' . $empleado->id) }}" method="post">
+                    <form action="{{ url('empleado/' . $empleado->id) }}" method="post"
+                    class="d-inline"
+                    >
                         @csrf
-                        
-                        <input type="submit" value="Borrar">
+                        {{method_field('DELETE')}}
+                        <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres realmente borrar?')" value="Borrar">
                     </form>
 
                 </td>
@@ -33,3 +49,5 @@ VIsta Empleado
         @endforeach
     </tbody>
 </table>
+</div>
+@endsection

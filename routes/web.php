@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\EmpleadoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmpleadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +16,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
+/* Route::get('empleado/', [EmpleadoController::class,'index']);
+Route::get('empleado/create', [EmpleadoController::class,'create']); */
 
-
-Route::get('empleado/create', [EmpleadoController::class,'create']);
-Route::get('empleado/', [EmpleadoController::class,'index']);
-Route::post('empleado/', [EmpleadoController::class,'store']);
+Route::resource('empleado', EmpleadoController::class)->middleware('auth');
+Auth::routes(['register'=>false, 'reset'=>false]);
+/* Route::post('empleado/', [EmpleadoController::class,'store']);
 Route::get('empleado/{$id}', [EmpleadoController::class,'destroy']);
+ */
 
-//Route::resource('empleado',[EmpleadoController::class]);
+
+
+
+Route::group(['middleware'=>'auth'], function(){
+    Route::get('/', [EmpleadoController::class, 'index'])->name('home');    
+});
+
+Route::get('/home', [EmpleadoController::class, 'index'])->name('home');

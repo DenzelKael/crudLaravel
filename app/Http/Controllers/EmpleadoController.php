@@ -6,6 +6,8 @@ use App\Jobs\SendEmailWhenCreateEmployee;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Storage;
+
 class EmpleadoController extends Controller
 {
     /**
@@ -15,7 +17,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        $datos['empleados']=Empleado::paginate(5);
+        $datos['empleados'] = Empleado::paginate(5);
         return view('empleado.index', $datos);
     }
 
@@ -38,15 +40,23 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         //$datosEmpleado = request()->all();
+        $campos=[
+            'nombre'=>'required|string|max:50',
+            'paterno' => 'required|string|max:50',
+            'materno'=>'required|string|max:50',
+            'correo'=>'required|email',
+            'foto'=>'required|max:10000|mimes:jpeg,png,jpg'
+        ];
+        
         $datosEmpleado = request()->except('_token');
         if ($request->hasFile('foto')) {
-            $datosEmpleado['foto']=$request->file('foto')->store('uploads','public');
+            $datosEmpleado['foto'] = $request->file('foto')->store('uploads', 'public');
         }
-        
+
         $empleado = Empleado::insert($datosEmpleado);
         SendEmailWhenCreateEmployee::dispatch($empleado);
         //return response()->json($datosEmpleado);
-        return redirect('/empleado');
+        return redirect('/empleado')->with('mensaje',"Empleado Agregado Correctamente");
     }
 
     /**
@@ -66,9 +76,10 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Empleado $empleado)
+    public function edit($id)
     {
-        //
+        $empleado = Empleado::findOrFail($id);
+        return view('empleado.edit', compact('empleado'));
     }
 
     /**
@@ -78,9 +89,19 @@ class EmpleadoController extends Controller
      * @param  \App\Models\Empleado  $empleado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Empleado $empleado)
+    public function update(Request $request, $id)
     {
-        //
+        $datosEmpleado = request()->except(['_token', '_method']);
+
+        if ($request->hasFile('foto')) {
+            $empleado = Empleado::findOrFail($id);
+            Storage::delete('public/' . $empleado->foto);
+            $datosEmpleado['foto'] = $request->file('foto')->store('uploads', 'public');
+        }
+
+        Empleado::where('id', '=', $id)->update($datosEmpleado);
+        $empleado = Empleado::findOrFail($id);
+        return redirect('/empleado');
     }
 
     /**
@@ -91,8 +112,11 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-    echo "entrando a destroy";
-        Empleado::destroy($id);
-        return redirect('empleado');
+
+        $empleado = Empleado::findOrFail($id);
+        if (Storage::delete('public/' . $empleado->foto)) {
+            Empleado::destroy($id);
+        }
+        return redirect('/empleado')->with('mensaje',"Empleado Eliminado Correctamente");
     }
 }
