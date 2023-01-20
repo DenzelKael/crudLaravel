@@ -1,6 +1,6 @@
 @extends('layout.plantilla')
 
-@section('titulo', 'CRUD LARAVEL')
+@section('titulo', 'Changarrito 2.0')
 
 @section('contenido')
     <div class="row">

@@ -47,6 +47,14 @@ class EmpleadoController extends Controller
             'correo'=>'required|email',
             'foto'=>'required|max:10000|mimes:jpeg,png,jpg'
         ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+            'foto.required'=>'La foto es requerida',
+            'paterno.required' => 'El Apellido :attribute es requerido',
+            'materno.required' => 'El Apellido :attribute es requerido',
+        ];
+        
+        $this->validate($request,$campos,$mensaje);
         
         $datosEmpleado = request()->except('_token');
         if ($request->hasFile('foto')) {
@@ -91,6 +99,28 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
+    
+        $campos=[
+            'nombre'=>'required|string|max:50',
+            'paterno' => 'required|string|max:50',
+            'materno'=>'required|string|max:50',
+            'correo'=>'required|email',
+            
+        ];
+        $mensaje=[
+            'required'=>'El :attribute es requerido',
+            'paterno.required' => 'El Apellido :attribute es requerido',
+            'materno.required' => 'El Apellido :attribute es requerido',
+        ];
+        
+        if ($request->hasFile('foto')) {
+            $campos=['foto'=>'required|max:10000|mimes:jpeg,png,jpg'];
+            $mensaje =['foto.required'=>'La foto es requerida'];
+        }
+        
+        $this->validate($request,$campos,$mensaje);
+    
+    
         $datosEmpleado = request()->except(['_token', '_method']);
 
         if ($request->hasFile('foto')) {
@@ -101,7 +131,7 @@ class EmpleadoController extends Controller
 
         Empleado::where('id', '=', $id)->update($datosEmpleado);
         $empleado = Empleado::findOrFail($id);
-        return redirect('/empleado');
+        return redirect('/empleado')->with('mensaje',"Empleado Actualizado Correctamente");
     }
 
     /**
