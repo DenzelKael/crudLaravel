@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('fecha');
-            $table->string('plataforma');
+            $table->foreignId('id_plataforma')
+            ->constrained('plataformas'); 
             $table->string('archivo');
             $table->timestamps();
             $table->softDeletes();

@@ -26,9 +26,11 @@
     </div>
     <div class="form-group flex-fill col-5">
         <label for="descripcion">Seleccione Plataforma Bancaria:</label><br>
-        <select name="plataforma" id="descripcion">
-            <option value="UNIMOVIL PLUS" name="unimovil plus">UNIMOVIL PLUS</option>
-            <option value="PRODEM" name="prodem">PRODEM</option>
+        <select name="id_plataforma" id="descripcion">
+        @foreach ($plataformas as $plataforma)
+        <option  value="{{$plataforma->id}}" name="{{$plataforma->nombre}}">{{$plataforma->nombre}}</option>
+        @endforeach
+            
         </select>
     </div>
 </div>

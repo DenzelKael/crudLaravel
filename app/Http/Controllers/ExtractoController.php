@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Archivo;
 use App\Models\Extracto;
 use Illuminate\Http\Request;
-use App\Imports\ExtractoImport;
-use Maatwebsite\Excel\Facades\Excel;
+
 
 class ExtractoController extends Controller
 {
@@ -54,7 +53,7 @@ class ExtractoController extends Controller
         
         $datos['extractos'] = Extracto::where('id_archivo', $archivo['id'])->paginate(15);
     
-        return view('extracto.index', $datos);;
+        return view('extracto.index', $datos);
         
     }
 

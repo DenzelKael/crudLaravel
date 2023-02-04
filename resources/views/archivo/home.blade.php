@@ -40,7 +40,7 @@
                           <td>{{$archivo->id}}</td>
                             <td style="text-transform: uppercase">{{ $archivo->nombre }}</td>
                             <td >{{ $archivo->fecha }}</td>
-                            <td>{{ $archivo->plataforma }}</td>
+                            <td>{{ $archivo->id_plataforma }}</td>
                             <td>{{ $archivo->archivo }}</td>
                             <td>
                                 <a href="{{ url('extracto/'.$archivo->id) }}" class="btn btn-info">Ver Extracto</a>

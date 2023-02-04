@@ -21,7 +21,13 @@
 <div class="form-group">
     <label for="descripcion">Descripcion:</label>
     <textarea class="form-control" type="text" name="descripcion"
-        value="{{ isset($plataforma->descripcion) ? $plataforma->descripcion:old('descripcion') }}" id="descripcion"></textarea>
+        value="" id="descripcion">{{ isset($plataforma->descripcion) ? $plataforma->descripcion:old('descripcion') }}</textarea>
+</div>
+<div class="form-group">
+    <label for="saldo">Saldo:</label>
+    <input class="form-control" style="text-transform: uppercase" type="text" name="saldo"  
+        value="{{ isset($plataforma->saldo) ? $plataforma->saldo:old('saldo') }}" id="saldo">
+
 </div>
 <br>
 <input class="btn btn-success" type="submit" value="{{ $modo }} plataforma">

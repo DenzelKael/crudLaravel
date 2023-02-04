@@ -73,7 +73,8 @@ class PlataformaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $plataforma = Plataforma::findOrFail($id);
+        return view('plataforma.edit', compact('plataforma'));
     }
 
     /**
@@ -85,7 +86,23 @@ class PlataformaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $campos=[
+            'nombre'=>'required|string|max:50',
+            'descripcion' => 'required',
+            'saldo' => 'required'
+        ];
+        $mensaje=[
+            'required'=>'El (La) :attribute es requerido(a)',
+        ];
+               
+        $this->validate($request,$campos,$mensaje);
+    
+    
+        $datosPlataforma = request()->except(['_token', '_method']);
+
+        Plataforma::where('id', '=', $id)->update($datosPlataforma);
+        $plataforma = Plataforma::findOrFail($id);
+        return redirect('/plataforma')->with('mensaje',"Plataforma Actualizada Correctamente");
     }
 
     /**
@@ -96,6 +113,8 @@ class PlataformaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $plataforma = Plataforma::findOrFail($id);
+        Plataforma::destroy($id);
+        return redirect('/plataforma')->with('mensaje',"Plataforma Eliminada Correctamente");
     }
 }

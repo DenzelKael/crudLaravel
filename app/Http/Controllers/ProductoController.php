@@ -62,7 +62,7 @@ class ProductoController extends Controller
         }
 
         $producto = Producto::insert($datosProducto);
-        
+       // dd($producto, $datosProducto);
         return redirect('/producto')->with('mensaje',"Producto Agregado Correctamente");
     }
 

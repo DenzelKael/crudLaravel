@@ -10,5 +10,5 @@ class Archivo extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable=['nombre','fecha','plataforma','archivo'];
+    protected $fillable=['nombre','fecha','id_plataforma','archivo'];
 }

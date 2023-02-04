@@ -19,6 +19,7 @@
                     <th>#</th>
                     <th>Nombre</th>
                     <th>Descripcion</th>
+                    <th>Saldo</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -26,9 +27,9 @@
                 @foreach ($plataformas as $plataforma)
                     <tr>
                        <td>{{$plataforma->id}}</td>
-                        <td style="text-transform: uppercase">{{ $plataforma->nombre }}</td>
-                        <td class="table-primary">{{ $plataforma->descripcion }}</td>
-                        
+                        <td class="table-primary" style="text-transform: uppercase">{{ $plataforma->nombre }}</td>
+                        <td >{{ $plataforma->descripcion }}</td>
+                        <td >{{ $plataforma->saldo }}</td>
                         <td>
                             <a href="{{ url('plataforma/' . $plataforma->id . '/edit') }}" class="btn btn-warning">Editar</a>
 
