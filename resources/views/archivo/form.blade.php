@@ -1,5 +1,3 @@
-<h1>{{ $modo }} Extracto Bancario</h1>
-
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
         <ul>
@@ -18,17 +16,17 @@
 
 </div>
 
-<div class="form-group d-flex row justify-content-between">
-    <div class="form-group flex-fill col-5">
+<div class="form-group d-flex row justify-content-start col-12">
+    <div class="form-group flex-fill col-6">
         <label for="fecha">Fecha:</label>
         <input class="form-control" type="date" name="fecha"
             value="{{ isset($archivo->fecha) ? $archivo->fecha : old('fecha') }}" id="fecha">
     </div>
-    <div class="form-group flex-fill col-5">
+    <div class="form-group flex-fill col-12">
         <label for="descripcion">Seleccione Plataforma Bancaria:</label><br>
-        <select name="id_plataforma" id="descripcion">
+        <select class="form-control form-select" name="id_plataforma" id="descripcion">
         @foreach ($plataformas as $plataforma)
-        <option  value="{{$plataforma->id}}" name="{{$plataforma->nombre}}">{{$plataforma->nombre}}</option>
+        <option class="danger"  value="{{$plataforma->id}}" name="{{$plataforma->nombre}}">{{$plataforma->nombre}}</option>
         @endforeach
             
         </select>
@@ -39,8 +37,8 @@
 
     <input type="file" class="form-control" name="archivo" value="" id="archivo">
 </div>
-<br>
+
 <input class="btn btn-success" type="submit" value="{{ $modo }} archivo">
 <a class="btn btn-danger" href="{{ url('archivo/') }}">Cancelar</a>
-<br>
+
 <script src="{{ asset('js/archivo.js') }}"></script>

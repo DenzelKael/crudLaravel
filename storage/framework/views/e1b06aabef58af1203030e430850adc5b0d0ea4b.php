@@ -1,9 +1,7 @@
  
 <?php $__env->startSection('content'); ?>
-    <div class="container">
-    
-    
-         
+    <div class="">
+        
         <table class="table table-light">
             <thead class="thead-light">
                 <tr>
@@ -22,16 +20,18 @@
             <tbody>
                 <?php $__currentLoopData = $extractos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $extracto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 
-                    <tr class="<?php if(trim($extracto->monto) == '-17.00' &&
-                        trim($extracto->descripcion) == 'N/D PAGO SEGIP MEDIANTE UNINET'): ?> table-danger
+                    <tr class="<?php if((trim($extracto->monto) == '-17.00' || trim($extracto->monto) == '17')  &&
+                        (trim($extracto->descripcion) == 'N/D PAGO SEGIP MEDIANTE UNINET'
+                        || trim($extracto->descripcion)=='Debito por pago de servicio SEGIP CEDULAS DE IDENTIDAD NACIONAL')): ?> table-danger
             <?php elseif(trim($extracto->monto) == '-80.00' &&
                     trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'): ?>
                 table-warning                        
             <?php elseif(trim($extracto->monto) == '-200.00' &&
                     trim($extracto->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR'): ?>
                 table-success  
-            <?php elseif(trim($extracto->monto) == '-225.00' &&
-                    trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'): ?>
+            <?php elseif((trim($extracto->monto) == '-225.00' || trim($extracto->monto) == '225') &&
+                    (trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'
+                    || trim($extracto->descripcion) == 'Debito por pago de servicio SEGIP LICENCIAS DE CONDUCIR NACIONAL')): ?>
             table-warning                         
             <?php elseif(trim($extracto->monto) == '-30.00' &&
                     trim($extracto->descripcion) == 'N/D PAGO IMPUESTOS VIA WEB RUAT'): ?>
@@ -45,14 +45,18 @@
             <?php elseif(trim($extracto->monto) == '-50.00' &&
                     trim($extracto->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR'): ?>
             table-success
-            <?php elseif(trim($extracto->monto) == '-80.00' &&
-                    trim($extracto->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR'): ?>
+            <?php elseif((trim($extracto->monto) == '-80.00' || trim($extracto->monto) == '80') &&
+                    (trim($extracto->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR'
+                    || trim($extracto->descripcion)=='Debito por pago de servicio SEGIP LICENCIAS DE CONDUCIR NACIONAL')): ?>
             table-success                        
-            <?php elseif(trim($extracto->monto) == '-10.00' &&
-                    trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'): ?>                            
+            <?php elseif((trim($extracto->monto) == '-10.00' || trim($extracto->monto) == '10') &&
+                    (trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET' 
+                    || trim($extracto->descripcion) == 'Debito por pago de servicio SEGIP CERTIFICACIONES EXTRANJERO' 
+                    || trim($extracto->descripcion) == 'Debito por pago de servicio SEGIP CERTIFICACIONES')): ?> 
                table-info                           
-            <?php elseif(trim($extracto->monto) == '-160.00' &&
-                    trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'): ?>
+            <?php elseif((trim($extracto->monto) == '-160.00' || trim($extracto->monto) == '160') &&
+                    (trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'
+                    || trim($extracto->descripcion=='Debito por pago de servicio SEGIP LICENCIAS DE CONDUCIR NACIONAL'))): ?>
             table-warning                             
             <?php elseif(trim($extracto->monto) == '-60.00' &&
                     trim($extracto->descripcion) == 'N/D TRASP. A ANH - RECAUDADORA'): ?>    
@@ -84,4 +88,4 @@
 <?php $__env->stopSection(); ?>
 <script src="<?php echo e(asset('js/extractos.js')); ?>"></script>
 
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Changa\resources\views/extracto/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout.adminlte', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Changa\resources\views/extracto/index.blade.php ENDPATH**/ ?>

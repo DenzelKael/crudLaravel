@@ -1,6 +1,6 @@
 
 <?php $__env->startSection('content'); ?>
-<div class="container">
+<div class="">
 <form action="<?php echo e(url('producto/'.$producto->id)); ?>" method="post"
 enctype="multipart/form-data"
 >
@@ -13,4 +13,4 @@ enctype="multipart/form-data"
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Changa\resources\views/producto/edit.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout.adminlte', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Changa\resources\views/producto/edit.blade.php ENDPATH**/ ?>

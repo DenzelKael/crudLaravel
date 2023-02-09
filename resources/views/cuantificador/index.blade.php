@@ -1,9 +1,12 @@
-@extends('layouts.app')
+@extends('layout.adminlte')
 @section('content')
 @php
-    $totalComission = 0;
+    $totalCantidad =0;
+    $totalComision = 0;
+    $totalCapital = 0;
+    $totalTotal = 0;
 @endphp
-    <div class="container">
+    <div class="">
         @if (Session::has('mensaje'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ Session::get('mensaje') }}
@@ -68,27 +71,24 @@
                     @else
                         P_OTROS @endif">
                         <td>{{ $cuantificador->id_archivo }}</td>
-                        <td>{{ $cuantificador->descripcion }}</td>
+                        <td>{{ $cuantificador->servicio?->nombre }}</td>
                         <td class="text-center">{{ $cuantificador->monto }}</td>
                         <td class="text-center">{{ $cuantificador->servicio?->sigla }}</td>
-                        <td class="text-center h3 bold"><kbd>{{ $cuantificador->cantidad }}</kbd></td>
-                        <td class="text-center h3 bold table-danger"><kbd>{{ $cuantificador->servicio?->costo *$cuantificador->cantidad  }}</kbd></td>
-                        <td class="text-center h3 bold table-warning"><kbd>{{ $cuantificador->servicio?->diferencia * $cuantificador->cantidad  }}</kbd></td>
-                        <td class="text-center h3 bold table-success"><kbd>{{ $cuantificador->servicio?->precio * $cuantificador->cantidad  }}</kbd></td>
+                        <td value="{{$totalCantidad+=$cuantificador->cantidad}}" class="text-center h4 table-light"><kbd>{{number_format($cuantificador->cantidad, 0 )  }}</kbd></td>
+                        <td value="{{$totalCapital+=$cuantificador->servicio?->costo *$cuantificador->cantidad}}" class="text-center h4 table-danger"><kbd>{{ number_format($cuantificador->servicio?->costo *$cuantificador->cantidad , 2 ) }}</kbd></td>
+                        <td value="{{$totalComision+=$cuantificador->servicio?->diferencia * $cuantificador->cantidad}}" class="text-center h4 table-warning"><kbd>{{ number_format($cuantificador->servicio?->diferencia * $cuantificador->cantidad , 2 )}}</kbd></td>
+                        <td value="{{$totalTotal+=$cuantificador->servicio?->precio * $cuantificador->cantidad}}" class="text-center h4 table-success"><kbd>{{number_format($cuantificador->servicio?->precio * $cuantificador->cantidad, 2 )}}</kbd></td>
 
                     </tr>
                 @endforeach
             </tbody>
-            <tfoot>
-            <td>total</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="text-center">{{$totalComission}}</td>
-            <td></td>
-            </tfoot>
+            <tfoot class="table table-dark text-center h3 bold">
+                <td  colspan="4">TOTALES</td>
+                <td class="text-center">{{$totalCantidad}}</td>
+                <td class="text-center">{{number_format($totalCapital, 2 )}}</td>
+                <td class="text-center">{{number_format($totalComision, 2 )}}</td>
+                <td class="text-center">{{number_format($totalTotal, 2 )}}</td>  
+                </tfoot>
         </table>
        {{--  {!! $cuantificadores->links() !!} --}}
         <a class="btn btn-danger" href="{{ url('extracto') }}">Volver Atras</a>

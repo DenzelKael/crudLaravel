@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Archivo extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    //use SoftDeletes;
     protected $fillable=['nombre','fecha','id_plataforma','archivo'];
+    
+    
+    public function plataforma(){
+        return $this->belongsTo(Plataforma::class, 'id_plataforma');
+    }
 }
+
+

@@ -2,8 +2,8 @@
 <?php $__env->startSection('content'); ?>
 
 
-    <div class="container">
-        
+    <div class="">
+  
         <?php if(Session::has('mensaje')): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php echo e(Session::get('mensaje')); ?>
@@ -63,4 +63,4 @@
     </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Changa\resources\views/servicio/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout.adminlte', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Changa\resources\views/servicio/index.blade.php ENDPATH**/ ?>

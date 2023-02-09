@@ -15,7 +15,7 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        $datos['servicios'] = Servicio::paginate(7);
+        $datos['servicios'] = Servicio::paginate(13);
         return view('servicio.index', $datos);
     }
 
@@ -96,7 +96,9 @@ class ServicioController extends Controller
             'precio' => 'required',
             'costo' => 'required',
             'diferencia' => 'required',
-            'descripcion' =>'required|string|max:100'
+            'descripcion' =>'required|string|max:100',
+            'id_plataforma'=>'required'
+            
         ];
         $mensaje=[
             'required'=>'El (La) :attribute es requerido (a)',

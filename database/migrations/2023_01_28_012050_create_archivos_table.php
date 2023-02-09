@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('archivos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('fecha');
+            $table->date('fecha');
             $table->foreignId('id_plataforma')
             ->constrained('plataformas'); 
             $table->string('archivo');

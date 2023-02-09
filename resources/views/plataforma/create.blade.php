@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layout.adminlte')
 @section('content')
-<div class="container">
+<div class="">
 <form action="{{url('/plataforma')}}" method="post" enctype="multipart/form-data">
 @csrf
     @include('plataforma.form', ['modo'=>'Crear'])

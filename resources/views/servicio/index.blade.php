@@ -1,15 +1,9 @@
-@extends('layouts.app')
+@extends('layout.adminlte')
 @section('content')
 
 
-    <div class="container">
-        {{--     <div class="alert alert-success alert-dismissible fade-show" role="alert">
-            @if (Session::has('mensaje'))
-                {{ Session::get('mensaje') }}
-            @endif
-            <button type="button" class="btn-close" data-bs-dismiss="alert" disabled aria-label="Close"></button>
-            <span aria-hidden="true">&times;</span>
-        </div> --}}
+    <div class="">
+  
         @if (Session::has('mensaje'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ Session::get('mensaje') }}

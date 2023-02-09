@@ -17,7 +17,9 @@ class Extracto extends Model
     public static function createFromArchivo( $archivo, $file ){
         // $file = $request->file('archivo');
         
+       
         Excel::import(new ExtractoImport($archivo), $file);
+      
     }
     
     public function servicio(){

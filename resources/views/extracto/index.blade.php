@@ -1,21 +1,7 @@
-@extends('layouts.app') 
+@extends('layout.adminlte') 
 @section('content')
-    <div class="container">
-    {{--     <div class="alert alert-success alert-dismissible fade-show" role="alert">
-            @if (Session::has('mensaje'))
-                {{ Session::get('mensaje') }}
-            @endif
-            <button type="button" class="btn-close" data-bs-dismiss="alert" disabled aria-label="Close"></button>
-            <span aria-hidden="true">&times;</span>
-        </div> --}}
-    {{--     @if (Session::has('mensaje'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ Session::get('mensaje') }}
-            
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-          @endif --}}
-         
+    <div class="">
+        
         <table class="table table-light">
             <thead class="thead-light">
                 <tr>
@@ -34,16 +20,18 @@
             <tbody>
                 @foreach ($extractos as $extracto)
                 
-                    <tr class="@if (trim($extracto->monto) == '-17.00' &&
-                        trim($extracto->descripcion) == 'N/D PAGO SEGIP MEDIANTE UNINET') table-danger
+                    <tr class="@if ((trim($extracto->monto) == '-17.00' || trim($extracto->monto) == '17')  &&
+                        (trim($extracto->descripcion) == 'N/D PAGO SEGIP MEDIANTE UNINET'
+                        || trim($extracto->descripcion)=='Debito por pago de servicio SEGIP CEDULAS DE IDENTIDAD NACIONAL')) table-danger
             @elseif (trim($extracto->monto) == '-80.00' &&
                     trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET')
                 table-warning                        
             @elseif (trim($extracto->monto) == '-200.00' &&
                     trim($extracto->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR')
                 table-success  
-            @elseif (trim($extracto->monto) == '-225.00' &&
-                    trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET')
+            @elseif ((trim($extracto->monto) == '-225.00' || trim($extracto->monto) == '225') &&
+                    (trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'
+                    || trim($extracto->descripcion) == 'Debito por pago de servicio SEGIP LICENCIAS DE CONDUCIR NACIONAL'))
             table-warning                         
             @elseif (trim($extracto->monto) == '-30.00' &&
                     trim($extracto->descripcion) == 'N/D PAGO IMPUESTOS VIA WEB RUAT')
@@ -57,14 +45,18 @@
             @elseif (trim($extracto->monto) == '-50.00' &&
                     trim($extracto->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR')
             table-success
-            @elseif (trim($extracto->monto) == '-80.00' &&
-                    trim($extracto->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR')
+            @elseif ((trim($extracto->monto) == '-80.00' || trim($extracto->monto) == '80') &&
+                    (trim($extracto->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR'
+                    || trim($extracto->descripcion)=='Debito por pago de servicio SEGIP LICENCIAS DE CONDUCIR NACIONAL'))
             table-success                        
-            @elseif (trim($extracto->monto) == '-10.00' &&
-                    trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET')                            
+            @elseif ((trim($extracto->monto) == '-10.00' || trim($extracto->monto) == '10') &&
+                    (trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET' 
+                    || trim($extracto->descripcion) == 'Debito por pago de servicio SEGIP CERTIFICACIONES EXTRANJERO' 
+                    || trim($extracto->descripcion) == 'Debito por pago de servicio SEGIP CERTIFICACIONES')) 
                table-info                           
-            @elseif (trim($extracto->monto) == '-160.00' &&
-                    trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET')
+            @elseif ((trim($extracto->monto) == '-160.00' || trim($extracto->monto) == '160') &&
+                    (trim($extracto->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'
+                    || trim($extracto->descripcion=='Debito por pago de servicio SEGIP LICENCIAS DE CONDUCIR NACIONAL')))
             table-warning                             
             @elseif (trim($extracto->monto) == '-60.00' &&
                     trim($extracto->descripcion) == 'N/D TRASP. A ANH - RECAUDADORA')    

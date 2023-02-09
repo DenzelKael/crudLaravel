@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('sigla');
             $table->string('descripcion');
+            $table->foreignId('id_plataforma')
+            ->constrained('plataformas'); 
             $table->bigInteger('precio');
             $table->bigInteger('costo');
             $table->bigInteger('diferencia');

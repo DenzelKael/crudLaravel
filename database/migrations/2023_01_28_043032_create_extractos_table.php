@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('extractos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_archivo')
-                ->constrained('archivos');
+                ->constrained('archivos')->onDelete('cascade');
             $table->foreignId('id_servicio')
                 ->constrained('servicios');
-            $table->string('fecha');
-            $table->string('AG');
+            $table->date('fecha');
+            $table->string('AG')->nullable( );
             $table->string('descripcion');
             $table->string('nro_documento');
             $table->string('monto');

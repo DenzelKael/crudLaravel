@@ -1,4 +1,5 @@
 <?php $__env->startSection('content'); ?>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -71,8 +72,7 @@ unset($__errorArgs, $__bag); ?>
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>
 
                                     <label class="form-check-label" for="remember">
-                                        <?php echo e(__('Remember Me')); ?>
-
+                                        Recuérdame
                                     </label>
                                 </div>
                             </div>
@@ -101,4 +101,4 @@ unset($__errorArgs, $__bag); ?>
 </div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Changa\resources\views/auth/login.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('adminlte::auth.login', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Changa\resources\views/auth/login.blade.php ENDPATH**/ ?>

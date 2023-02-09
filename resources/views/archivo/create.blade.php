@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layout.adminlte')
 @section('content')
-<div class="container">
+<div class="container-fluid">
 <form action="{{url('/archivo')}}" method="post" enctype="multipart/form-data">
 @csrf
     @include('archivo.form', ['modo'=>'Guardar'])

@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layout.adminlte')
 @section('content')
 
 
-    <div class="container">
+    <div class="">
         @if (Session::has('mensaje'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ Session::get('mensaje') }}

@@ -17,8 +17,14 @@ class ArchivoController extends Controller
      */
     public function index()
     {
-         $datos['archivos'] = Archivo::paginate(10);
+        // $datos['archivos'] = Archivo::orderBy('id','desc')->with('plataforma')->paginate(5);
+         $datos['archivos'] = Archivo::selectRaw("GROUP_CONCAT(archivos.id SEPARATOR ' / ') id, 
+         archivos.fecha, GROUP_CONCAT(archivos.nombre SEPARATOR ' / ') nombres, 
+         GROUP_CONCAT(plataformas.nombre SEPARATOR ' / ') plataformas")
+                                ->join('plataformas','plataformas.id','=','archivos.id_plataforma')
+                                ->groupBy('fecha')->orderBy('fecha', 'DESC')->paginate(5);
          $datos['plataformas'] = Plataforma::paginate(10);
+         //dd($datos);
         return view('archivo.index', $datos); 
     } 
     
@@ -67,14 +73,14 @@ class ArchivoController extends Controller
         
         $datosArchivo = request()->except('_token');
         if ($request->hasFile('archivo')) {
-            $datosArchivo['archivo'] = $request->file('archivo')->store('extractos', 'public');
+            $datosArchivo['archivo'] = $request->file('archivo')->store('extractos');
         }
         
         
         $archivo = Archivo::create($datosArchivo);
-      
+        dd($datosArchivo);
         Extracto::createFromArchivo( $archivo, $request->file('archivo') );
-        
+        //dd('antes de guardar archivo');
         return redirect('/archivo')->with('mensaje',"Archivo de Excel Agregado Correctamente");
     }
 
@@ -86,7 +92,7 @@ class ArchivoController extends Controller
      */
     public function show($id)
     {
-        
+    
        return  Archivo::find($id);
         //dd($archivo->archivo); direccion del excel en cuestion
     }
@@ -141,6 +147,7 @@ class ArchivoController extends Controller
         $empleado = Archivo::findOrFail($id);
         
         Extracto::createFromArchivo( $archivo, $request->file('archivo') );
+       
         return redirect('/archivo')->with('mensaje',"Archivo Actualizado Correctamente");
     }
 
@@ -153,7 +160,7 @@ class ArchivoController extends Controller
     public function destroy($id)
     {
         $archivo = Archivo::findOrFail($id);
-        if (Storage::delete('public/' . $archivo->archivo)) {
+        if (Storage::delete($archivo->archivo)) {
             
             Archivo::destroy($id);
         }

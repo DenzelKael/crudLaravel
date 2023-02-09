@@ -47,14 +47,19 @@ class ExtractoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($index)
     {
-        $archivo = Archivo::find($id);
+        if (is_int($index)) {
+            $datos['extractos'] = Extracto::where('id_archivo', $index)->paginate(15);
+        }else{
+            $datos['extractos'] = Extracto::where('fecha', $index)->paginate(15);
+        }
         
-        $datos['extractos'] = Extracto::where('id_archivo', $archivo['id'])->paginate(15);
-    
+       //dd($datos);
+       
+   
         return view('extracto.index', $datos);
-        
+            
     }
 
     /**
