@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('extractos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_archivo')
-                ->constrained('archivos')->onDelete('cascade');
+            $table->foreignId('id_banco')
+                ->constrained('bancos')->onDelete('cascade');
             $table->foreignId('id_servicio')
                 ->constrained('servicios');
             $table->date('fecha');
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->string('nro_documento');
             $table->string('monto');
+            $table->string('deposito');
             $table->string('saldo');
             $table->string('sigla');
             $table->timestamps();

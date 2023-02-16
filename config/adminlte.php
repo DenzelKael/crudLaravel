@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'ChangaNET',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -323,6 +323,11 @@ return [
             'text' => 'Perfil',
             'url'  => '#',
             'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Bancos',
+            'url'  => '/banco',
+            'icon' => 'fas fa-university',
         ],
         [
             'text' => 'Productos',

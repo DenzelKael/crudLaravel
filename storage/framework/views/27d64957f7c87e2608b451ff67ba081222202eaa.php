@@ -15,7 +15,6 @@
     <label for="nombre">Nombre:</label>
     <input class="form-control" style="text-transform: uppercase" type="text" name="nombre"  
         value="<?php echo e(isset($producto->nombre) ? $producto->nombre:old('nombre')); ?>" id="nombre">
-
 </div>
 <div class="form-group">
     <label for="precio">Precio:</label>
@@ -24,33 +23,26 @@
 </div>
 <div class="form-group">
     <label for="costo">Costo:</label>
-    <input class="form-control" type="number"  step="0.01" name="costo"
+    <input class="form-control" type="number"    step="0.01" name="costo"
         value="<?php echo e(isset($producto->costo) ? $producto->costo:old('costo')); ?>" id="costo">
 </div>
 <div class="form-group">
-    <label for="descuento">Descuento:</label>
-    <input class="form-control" type="number"  step="0.01" name="descuento"
-        value="<?php echo e(isset($producto->descuento) ? $producto->descuento:old('descuento')); ?>" id="descuento">
-</div>
-
-<div class="form-group">
-    <label for="existencia">Existencia:</label>
-    <input class="form-control" type="number" name="existencia"
+    <label for="existencia">existencia:</label>
+    <input class="form-control" type="number"    step="0.01" name="existencia"
         value="<?php echo e(isset($producto->existencia) ? $producto->existencia:old('existencia')); ?>" id="existencia">
 </div>
 <div class="form-group">
-    <label for="id_categoria">ID Categoria:</label>
-    <input class="form-control" type="number" name="id_categoria"
-        value="<?php echo e(isset($producto->id_categoria) ? $producto->id_categoria:old('id_categoria')); ?>" id="id_categoria">
+    <label for="descuento">descuento:</label>
+    <input class="form-control" type="number"    step="0.01" name="descuento"
+        value="<?php echo e(isset($producto->descuento) ? $producto->descuento:old('descuento')); ?>" id="descuento">
 </div>
 <div class="form-group">
-    <label for="foto">Fotografia:</label>
-    <?php if(isset($producto->foto)): ?>
-        <img class="img-thumbnail img-fluid" src="<?php echo e(asset('storage') . '/' . $producto->foto); ?>" width="100"
-            alt="" srcset="">
-    <?php endif; ?>
-    <input type="file" class="form-control" name="foto" value="" id="foto">
+    <label for="id_categoria">id_categoria:</label>
+    <input class="form-control" type="number"    step="0.01" name="id_categoria"
+        value="<?php echo e(isset($producto->id_categoria) ? $producto->id_categoria:old('id_categoria')); ?>" id="id_categoria">
 </div>
+
+
 <br>
 <input class="btn btn-success" type="submit" value="<?php echo e($modo); ?> producto">
 <a class="btn btn-primary" href="<?php echo e(url('producto/')); ?>">Volver al Inicio</a>

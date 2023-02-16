@@ -1,9 +1,12 @@
 @extends('layout.adminlte')
+@section('content-header')
+    <h2>Listado de Servicios</h2>
+@stop
 @section('content')
 
 
     <div class="">
-  
+
         @if (Session::has('mensaje'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ Session::get('mensaje') }}
@@ -17,7 +20,7 @@
 
         <a class="btn btn-success" href="{{ url('servicio/create') }}">Registrar Nuevo Servicio</a>
         <br><br>
-        <table class="table table-light ">
+        <table id="servicios" class="table table-light ">
             <thead class="thead-light align-middle">
                 <tr>
                     <th>#</th>
@@ -33,13 +36,13 @@
             <tbody class="align-middle">
                 @foreach ($servicios as $servicio)
                     <tr>
-                        <td class="table-primary">{{$servicio->id}}</td>
-                        <td  class="table-danger" style="text-transform: uppercase">{{ $servicio->nombre }}</td>
-                        <td  class="table-warning" style="text-transform: uppercase">{{ $servicio->sigla }}</td>
+                        <td class="table-primary">{{ $servicio->id }}</td>
+                        <td class="table-danger" style="text-transform: uppercase">{{ $servicio->nombre }}</td>
+                        <td class="table-warning" style="text-transform: uppercase">{{ $servicio->sigla }}</td>
                         <td class="table-success">{{ $servicio->precio }}</td>
                         <td>{{ $servicio->costo }}</td>
                         <td class="table-info">{{ $servicio->diferencia }}</td>
-                        <td >{{ $servicio->descripcion }}</td>
+                        <td>{{ $servicio->descripcion }}</td>
                         <td>
                             <a href="{{ url('servicio/' . $servicio->id . '/edit') }}" class="btn btn-warning">Editar</a>
 
@@ -56,6 +59,6 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $servicios->links() !!}
+        {{--  {!! $servicios->links() !!} --}}
     </div>
 @endsection

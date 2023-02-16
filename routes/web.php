@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\CuantificadorController;
 use App\Http\Controllers\ExtractoController;
 use App\Http\Controllers\PlataformaController;
 use App\Http\Controllers\ServicioController;
+use App\Http\Controllers\bancoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +27,13 @@ Route::get('/', function () {
 
 /* Route::get('empleado/', [EmpleadoController::class,'index']);
 Route::get('empleado/create', [EmpleadoController::class,'create']); */
+Route::resource('banco', bancoController::class)->middleware('auth');
 Route::resource('archivo', ArchivoController::class)->middleware('auth');
 Route::resource('extracto', ExtractoController::class)->middleware('auth');
 Route::resource('producto', ProductoController::class)->middleware('auth');
 Route::resource('plataforma', PlataformaController::class)->middleware('auth');
 Route::resource('servicio', ServicioController::class)->middleware('auth');
+
 Route::resource('cuantificador', CuantificadorController::class)->middleware('auth');
 Auth::routes(['register'=>false, 'reset'=>false]); 
 /* Route::post('empleado/', [EmpleadoController::class,'store']);
@@ -42,11 +44,11 @@ Route::get('empleado/{$id}', [EmpleadoController::class,'destroy']);
 
 
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('/', [ArchivoController::class, 'index'])->name('home')->middleware('auth');   
+    Route::get('/', [bancoController::class, 'index'])->name('home')->middleware('auth');   
 });
 
 
 Route::get('/archivo_home', [ArchivoController::class, 'home'])->name('archivo_home')->middleware('auth');
-Route::get('/home', [ArchivoController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home', [bancoController::class, 'index'])->name('home')->middleware('auth');
 
 Auth::routes();

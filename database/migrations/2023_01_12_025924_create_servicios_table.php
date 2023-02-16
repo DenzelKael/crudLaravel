@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('sigla');
+            $table->string('color');
             $table->string('descripcion');
             $table->foreignId('id_plataforma')
             ->constrained('plataformas'); 

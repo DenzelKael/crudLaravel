@@ -62,27 +62,23 @@ class CuantificadorController extends Controller
        
     } 
      
-     
+    public function obtenerTotalesParciales($id){
+        return Extracto::join('bancos','extractos.id_banco','=','bancos.id')
+        ->join('plataformas','bancos.id_plataforma','=','plataformas.id')
+        ->with('servicio')
+        ->selectRaw('id_servicio, bancos.id, extractos.descripcion, extractos.deposito, extractos.monto, 
+        plataformas.id as id_plataforma, count(*) as cantidad')
+        ->where(['extractos.id_banco'=> $id ])
+        ->groupBy('extractos.descripcion')->groupBy('extractos.monto')
+        ->orderBy('id_servicio', 'asc')
+        ->get();
+    
+    }
      
     public function show($id)
     {
-    
-    // plataformas,archivos,extractos
-    
-     $datos['cuantificadores'] = Extracto::join('archivos','extractos.id_archivo','=','archivos.id')
-     ->join('plataformas','archivos.id_plataforma','=','plataformas.id')
-     ->with('servicio')
-     ->selectRaw('id_servicio, archivos.id as id_archivo, extractos.descripcion, extractos.monto, plataformas.id as id_plataforma, count(*) as cantidad')
-     ->where(['id_archivo'=> $id ])
-     ->groupBy('extractos.descripcion')->groupBy('extractos.monto')
-     ->orderBy('cantidad', 'desc') 
-     ->orderBy('extractos.monto', 'asc')
-     ->get();
-          //dd($datos['cuantificadores']->toArray());
-     $datos['servicios'] = Servicio::select()->get(); 
-    //  $cuantificadores = $datos['cuantificadores'][0]->toArray();
-    //  $servicios = $datos['servicios'][0]->toArray();
-     
+        $datos['cuantificadores']  = $this->obtenerTotalesParciales($id);
+
     return view('cuantificador.index', $datos); 
     }
 

@@ -19,10 +19,11 @@
 
         <table class="table table-light ">
             <thead class="thead-light align-middle">
-                <tr>
+                <tr class="text-center">
                     <th>#</th>
                     <th>Descripcion</th>
-                    <th>Monto</th>
+                    <th>Deposito</th>
+                    <th>Retiro</th>
                     <th>Sigla Servicio</th>
                     <th>Cantidad</th>
                     <th>Capital</th>
@@ -32,46 +33,10 @@
             </thead>
             <tbody class="align-middle">
                 @foreach ($cuantificadores as $cuantificador)
-                    <tr
-                        class="@if (trim($cuantificador->monto) == '-17.00' &&
-                                trim($cuantificador->descripcion) == 'N/D PAGO SEGIP MEDIANTE UNINET') table-danger
-                    @elseif (trim($cuantificador->monto) == '-80.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET')
-                        table-warning                        
-                    @elseif (trim($cuantificador->monto) == '-200.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR')
-                        table-success  
-                    @elseif (trim($cuantificador->monto) == '-225.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET')
-                    table-warning                         
-                    @elseif (trim($cuantificador->monto) == '-30.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO IMPUESTOS VIA WEB RUAT')
-                        table-primary    
-                        @elseif (trim($cuantificador->monto) == '-50.00' &&
-                        trim($cuantificador->descripcion) == 'N/D PAGO IMPUESTOS VIA WEB RUAT')
-                    table-primary                            
-                    @elseif (trim($cuantificador->monto) == '-20.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO IMPUESTOS VIA WEB RUAT')
-                    table-primary                           
-                    @elseif (trim($cuantificador->monto) == '-50.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR')
-                    table-success
-                    @elseif (trim($cuantificador->monto) == '-80.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR')
-                    table-success                        
-                    @elseif (trim($cuantificador->monto) == '-10.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET')                            
-                       table-info                           
-                    @elseif (trim($cuantificador->monto) == '-160.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET')
-                    table-warning                             
-                    @elseif (trim($cuantificador->monto) == '-60.00' &&
-                            trim($cuantificador->descripcion) == 'N/D TRASP. A ANH - RECAUDADORA')    
-                        table-secondary
-                    @else
-                        P_OTROS @endif">
-                        <td>{{ $cuantificador->id_archivo }}</td>
-                        <td>{{ $cuantificador->servicio?->nombre }}</td>
+                <tr class="table-{{$cuantificador->servicio?->color}}">
+                        <td>{{ $cuantificador->id_servicio }}</td>
+                        <td>{{ $cuantificador->servicio?->nombre }}<br>{{$cuantificador->descripcion}}</td>
+                        <td class="text-center">{{ $cuantificador->deposito}}</td>
                         <td class="text-center">{{ $cuantificador->monto }}</td>
                         <td class="text-center">{{ $cuantificador->servicio?->sigla }}</td>
                         <td value="{{$totalCantidad+=$cuantificador->cantidad}}" class="text-center h4 table-light"><kbd>{{number_format($cuantificador->cantidad, 0 )  }}</kbd></td>
@@ -83,7 +48,7 @@
                 @endforeach
             </tbody>
             <tfoot class="table table-dark text-center h3 bold">
-                <td  colspan="4">TOTALES</td>
+                <td  colspan="5">TOTALES</td>
                 <td class="text-center">{{$totalCantidad}}</td>
                 <td class="text-center">{{number_format($totalCapital, 2 )}}</td>
                 <td class="text-center">{{number_format($totalComision, 2 )}}</td>

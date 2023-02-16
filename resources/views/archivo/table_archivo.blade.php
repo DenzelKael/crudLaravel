@@ -30,16 +30,7 @@
                             <td>{{ $archivo->plataformas }}</td>
                          
                             <td>
-                                <a title="Ver Extracto" href="{{url('extracto/'.$archivo->fecha) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                {{-- <a href="{{ url('archivo/' . $archivo->id . '/edit') }}" class="btn btn-warning">Editar</a> --}}
-                             {{--    <form action="{{ url('archivo/' . $archivo->id) }}" method="post" class="d-inline">
-                                    @csrf
-                                    {{ method_field('DELETE') }}
-                                    <button title="Eliminar" class="btn btn-danger" type="submit"
-                                        onclick="return confirm('¿Quieres realmente borrar?')" >
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </button>
-                                </form> --}}
+                          
                             </td>
                         </tr>
                     @endforeach

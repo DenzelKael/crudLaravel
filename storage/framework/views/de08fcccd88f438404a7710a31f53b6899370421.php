@@ -20,10 +20,11 @@
 
         <table class="table table-light ">
             <thead class="thead-light align-middle">
-                <tr>
+                <tr class="text-center">
                     <th>#</th>
                     <th>Descripcion</th>
-                    <th>Monto</th>
+                    <th>Deposito</th>
+                    <th>Retiro</th>
                     <th>Sigla Servicio</th>
                     <th>Cantidad</th>
                     <th>Capital</th>
@@ -33,46 +34,10 @@
             </thead>
             <tbody class="align-middle">
                 <?php $__currentLoopData = $cuantificadores; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cuantificador): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <tr
-                        class="<?php if(trim($cuantificador->monto) == '-17.00' &&
-                                trim($cuantificador->descripcion) == 'N/D PAGO SEGIP MEDIANTE UNINET'): ?> table-danger
-                    <?php elseif(trim($cuantificador->monto) == '-80.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'): ?>
-                        table-warning                        
-                    <?php elseif(trim($cuantificador->monto) == '-200.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR'): ?>
-                        table-success  
-                    <?php elseif(trim($cuantificador->monto) == '-225.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'): ?>
-                    table-warning                         
-                    <?php elseif(trim($cuantificador->monto) == '-30.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO IMPUESTOS VIA WEB RUAT'): ?>
-                        table-primary    
-                        <?php elseif(trim($cuantificador->monto) == '-50.00' &&
-                        trim($cuantificador->descripcion) == 'N/D PAGO IMPUESTOS VIA WEB RUAT'): ?>
-                    table-primary                            
-                    <?php elseif(trim($cuantificador->monto) == '-20.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO IMPUESTOS VIA WEB RUAT'): ?>
-                    table-primary                           
-                    <?php elseif(trim($cuantificador->monto) == '-50.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR'): ?>
-                    table-success
-                    <?php elseif(trim($cuantificador->monto) == '-80.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO CERT. ANTECEDENTES CUDAP QR'): ?>
-                    table-success                        
-                    <?php elseif(trim($cuantificador->monto) == '-10.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'): ?>                            
-                       table-info                           
-                    <?php elseif(trim($cuantificador->monto) == '-160.00' &&
-                            trim($cuantificador->descripcion) == 'N/D PAGO SEGELIC MEDIANTE UNINET'): ?>
-                    table-warning                             
-                    <?php elseif(trim($cuantificador->monto) == '-60.00' &&
-                            trim($cuantificador->descripcion) == 'N/D TRASP. A ANH - RECAUDADORA'): ?>    
-                        table-secondary
-                    <?php else: ?>
-                        P_OTROS <?php endif; ?>">
-                        <td><?php echo e($cuantificador->id_archivo); ?></td>
-                        <td><?php echo e($cuantificador->servicio?->nombre); ?></td>
+                <tr class="table-<?php echo e($cuantificador->servicio?->color); ?>">
+                        <td><?php echo e($cuantificador->id_servicio); ?></td>
+                        <td><?php echo e($cuantificador->servicio?->nombre); ?><br><?php echo e($cuantificador->descripcion); ?></td>
+                        <td class="text-center"><?php echo e($cuantificador->deposito); ?></td>
                         <td class="text-center"><?php echo e($cuantificador->monto); ?></td>
                         <td class="text-center"><?php echo e($cuantificador->servicio?->sigla); ?></td>
                         <td value="<?php echo e($totalCantidad+=$cuantificador->cantidad); ?>" class="text-center h4 table-light"><kbd><?php echo e(number_format($cuantificador->cantidad, 0 )); ?></kbd></td>
@@ -84,7 +49,7 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
             <tfoot class="table table-dark text-center h3 bold">
-                <td  colspan="4">TOTALES</td>
+                <td  colspan="5">TOTALES</td>
                 <td class="text-center"><?php echo e($totalCantidad); ?></td>
                 <td class="text-center"><?php echo e(number_format($totalCapital, 2 )); ?></td>
                 <td class="text-center"><?php echo e(number_format($totalComision, 2 )); ?></td>

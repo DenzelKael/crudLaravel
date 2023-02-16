@@ -78,7 +78,7 @@ class ArchivoController extends Controller
         
         
         $archivo = Archivo::create($datosArchivo);
-        dd($datosArchivo);
+        //dd($datosArchivo);
         Extracto::createFromArchivo( $archivo, $request->file('archivo') );
         //dd('antes de guardar archivo');
         return redirect('/archivo')->with('mensaje',"Archivo de Excel Agregado Correctamente");
@@ -118,37 +118,7 @@ class ArchivoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $campos=[
-            'nombre'=>'required|string|max:50',
-            'fecha' => 'required',
-            'id_plataforma'=>'required',
-            'archivo'=>'required|max:10000|mimes:xlsx,xls,xlm,xla,xlc,xlt,xlw',
-            
-        ];
-        $mensaje=[
-            'required'=>'El :attribute es requerido',
-            'archivo.required'=>'El archivo es requerido y debe ser una Hoja de Calculo',
-            'archivo.mimes' => 'El archivo debe ser en formato Excel'
-        ];
-
         
-        $this->validate($request,$campos,$mensaje);
-    
-    
-        $datosArchivo = request()->except(['_token', '_method']);
-
-        if ($request->hasFile('archivo')) {
-            $archivo = Archivo::findOrFail($id);
-            Storage::delete('public/' . $archivo->archivo);
-            $datosEmpleado['archivo'] = $request->file('archivo')->store('extractos', 'public');
-        }
-
-        Archivo::where('id', '=', $id)->update($datosArchivo);
-        $empleado = Archivo::findOrFail($id);
-        
-        Extracto::createFromArchivo( $archivo, $request->file('archivo') );
-       
-        return redirect('/archivo')->with('mensaje',"Archivo Actualizado Correctamente");
     }
 
     /**

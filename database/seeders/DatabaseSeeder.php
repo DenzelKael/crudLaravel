@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             PlataformaSeeder::class,
-            ServicioSeeder::class
+            ServicioSeeder::class,
+            UserSeeder::class
           
         ]);
 }

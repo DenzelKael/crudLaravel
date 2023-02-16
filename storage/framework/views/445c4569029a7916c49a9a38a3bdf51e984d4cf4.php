@@ -1,9 +1,12 @@
 
+<?php $__env->startSection('content-header'); ?>
+    <h2>Listado de Servicios</h2>
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
 
     <div class="">
-  
+
         <?php if(Session::has('mensaje')): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <?php echo e(Session::get('mensaje')); ?>
@@ -18,7 +21,7 @@
 
         <a class="btn btn-success" href="<?php echo e(url('servicio/create')); ?>">Registrar Nuevo Servicio</a>
         <br><br>
-        <table class="table table-light ">
+        <table id="servicios" class="table table-light ">
             <thead class="thead-light align-middle">
                 <tr>
                     <th>#</th>
@@ -35,12 +38,12 @@
                 <?php $__currentLoopData = $servicios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $servicio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td class="table-primary"><?php echo e($servicio->id); ?></td>
-                        <td  class="table-danger" style="text-transform: uppercase"><?php echo e($servicio->nombre); ?></td>
-                        <td  class="table-warning" style="text-transform: uppercase"><?php echo e($servicio->sigla); ?></td>
+                        <td class="table-danger" style="text-transform: uppercase"><?php echo e($servicio->nombre); ?></td>
+                        <td class="table-warning" style="text-transform: uppercase"><?php echo e($servicio->sigla); ?></td>
                         <td class="table-success"><?php echo e($servicio->precio); ?></td>
                         <td><?php echo e($servicio->costo); ?></td>
                         <td class="table-info"><?php echo e($servicio->diferencia); ?></td>
-                        <td ><?php echo e($servicio->descripcion); ?></td>
+                        <td><?php echo e($servicio->descripcion); ?></td>
                         <td>
                             <a href="<?php echo e(url('servicio/' . $servicio->id . '/edit')); ?>" class="btn btn-warning">Editar</a>
 
@@ -58,8 +61,7 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
-        <?php echo $servicios->links(); ?>
-
+        
     </div>
 <?php $__env->stopSection(); ?>
 

@@ -18,6 +18,7 @@ class ServicioSeeder extends Seeder
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE CEDULAS DE IDENTIDAD";
         $servicio->sigla = "P_CI_22_UNIMOVIL";
+        $servicio->color = "danger";
         $servicio->descripcion="N/D PAGO SEGIP MEDIANTE UNINET";
         $servicio->id_plataforma = 1;
         $servicio->precio = 22;
@@ -28,6 +29,7 @@ class ServicioSeeder extends Seeder
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE CEDULAS DE IDENTIDAD";
         $servicio->sigla = "P_CI_22_PRODEM";
+        $servicio->color = "danger";
         $servicio->descripcion="Debito por pago de servicio SEGIP CEDULAS DE IDENTIDAD NACIONAL";
         $servicio->id_plataforma = 2;
         $servicio->precio = 22;
@@ -36,28 +38,9 @@ class ServicioSeeder extends Seeder
         $servicio->save();
         
         $servicio = new Servicio();
-        $servicio->nombre = "PAGO DE LICENCIAS DE CONDUCIR - MT";
-        $servicio->sigla = "P_LIC_MT_90_UNIMOVIL";
-        $servicio->descripcion="N/D PAGO SEGELIC MEDIANTE UNINET";
-        $servicio->id_plataforma = 1;
-        $servicio->precio = 90;
-        $servicio->costo= 80;
-        $servicio->diferencia = $servicio->precio - $servicio->costo;
-        $servicio->save();
-        
-        $servicio = new Servicio();
-        $servicio->nombre = "PAGO DE LICENCIAS DE CONDUCIR - MT";
-        $servicio->sigla = "P_LIC_MT_90_PRODEM";
-        $servicio->descripcion="Debito por pago de servicio SEGIP LICENCIAS DE CONDUCIR NACIONAL";
-        $servicio->id_plataforma = 2;
-        $servicio->precio = 90;
-        $servicio->costo= 80;
-        $servicio->diferencia = $servicio->precio - $servicio->costo;
-        $servicio->save();
-        
-        $servicio = new Servicio();
         $servicio->nombre = "PAGO DE LICENCIAS DE CONDUCIR - ABCP";
         $servicio->sigla = "P_LIC_ABCP_235_UNIMOVIL";
+        $servicio->color = "warning";
         $servicio->descripcion="N/D PAGO SEGELIC MEDIANTE UNINET";
         $servicio->id_plataforma = 1;
         $servicio->precio = 235;
@@ -68,6 +51,7 @@ class ServicioSeeder extends Seeder
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE LICENCIAS DE CONDUCIR - ABCP";
         $servicio->sigla = "P_LIC_ABCP_235_PRODEM";
+        $servicio->color = "warning";
         $servicio->descripcion="Debito por pago de servicio SEGIP LICENCIAS DE CONDUCIR NACIONAL";
         $servicio->id_plataforma = 2;
         $servicio->precio = 235;
@@ -75,9 +59,45 @@ class ServicioSeeder extends Seeder
         $servicio->diferencia = $servicio->precio - $servicio->costo;
         $servicio->save();
         
+        
+        $servicio = new Servicio();
+        $servicio->nombre = "PAGO DE LICENCIAS DE CONDUCIR - MT";
+        $servicio->sigla = "P_LIC_MT_90_UNIMOVIL";
+        $servicio->color = "warning";
+        $servicio->descripcion="N/D PAGO SEGELIC MEDIANTE UNINET";
+        $servicio->id_plataforma = 1;
+        $servicio->precio = 90;
+        $servicio->costo= 80;
+        $servicio->diferencia = $servicio->precio - $servicio->costo;
+        $servicio->save();
+        
+        $servicio = new Servicio();
+        $servicio->nombre = "PAGO DE LICENCIAS DE CONDUCIR - MT";
+        $servicio->sigla = "P_LIC_MT_90_PRODEM";
+        $servicio->color = "warning";
+        $servicio->descripcion="Debito por pago de servicio SEGIP LICENCIAS DE CONDUCIR NACIONAL";
+        $servicio->id_plataforma = 2;
+        $servicio->precio = 90;
+        $servicio->costo= 80;
+        $servicio->diferencia = $servicio->precio - $servicio->costo;
+        $servicio->save();
+        
+        $servicio = new Servicio();
+        $servicio->nombre = "PAGO DE ANTECEDENTES PARA RENOVAR LIC. - TRANSITO";
+        $servicio->sigla = "P_ANT_R_70";
+        $servicio->color = "success";
+        $servicio->descripcion="N/D PAGO CERT. ANTECEDENTES CUDAP QR";
+        $servicio->id_plataforma = 1;
+        $servicio->precio = 70;
+        $servicio->costo= 50;
+        $servicio->diferencia = $servicio->precio - $servicio->costo;
+        $servicio->save(); 
+        
+
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE ANTECEDENTES PARA NUEVAS LIC. - TRICA";
         $servicio->sigla = "P_ANT_N_220";
+        $servicio->color = "success";
         $servicio->descripcion="N/D PAGO CERT. ANTECEDENTES CUDAP QR";
         $servicio->id_plataforma = 1;
         $servicio->precio = 220;
@@ -86,50 +106,33 @@ class ServicioSeeder extends Seeder
         $servicio->save();
         
         $servicio = new Servicio();
-        $servicio->nombre = "PAGO DE ANTECEDENTES PARA RENOVAR LIC. - TRANSITO";
-        $servicio->sigla = "P_ANT_R_70";
+        $servicio->nombre = "PAGO DE ANTECEDENTES FELCC O FELCN";
+        $servicio->sigla = "P_ANT_CC_CN_100";
+        $servicio->color = "success";
         $servicio->descripcion="N/D PAGO CERT. ANTECEDENTES CUDAP QR";
         $servicio->id_plataforma = 1;
-        $servicio->precio = 70;
-        $servicio->costo= 50;
+        $servicio->precio = 100;
+        $servicio->costo= 80;
         $servicio->diferencia = $servicio->precio - $servicio->costo;
         $servicio->save();
         
-        $servicio = new Servicio();
-        $servicio->nombre = "PAGO DE INSPECCION TECNICA VEHICULAR - CON MULTA I";
-        $servicio->sigla = "P_INS_TEC_60";
-        $servicio->descripcion="N/D PAGO IMPUESTOS VIA WEB RUAT";
-        $servicio->id_plataforma = 1;
-        $servicio->precio = 60;
-        $servicio->costo= 50;
-        $servicio->diferencia = $servicio->precio - $servicio->costo;
-        $servicio->save();
-        
-        $servicio = new Servicio();
-        $servicio->nombre = "PAGO DE INSPECCION TECNICA VEHICULAR - PARTICULAR";
-        $servicio->sigla = "P_INS_TEC_40";
-        $servicio->descripcion="N/D PAGO IMPUESTOS VIA WEB RUAT";
-        $servicio->id_plataforma = 1;
-        $servicio->precio = 40;
-        $servicio->costo= 30;
-        $servicio->diferencia = $servicio->precio - $servicio->costo;
-        $servicio->save();
-        
-        $servicio = new Servicio();
-        $servicio->nombre = "PAGO DE INSPECCION TECNICA VEHICULAR - PUBLICO";
-        $servicio->sigla = "P_INS_TEC_30";
-        $servicio->descripcion="N/D PAGO IMPUESTOS VIA WEB RUAT";
-        $servicio->id_plataforma = 1;
-        $servicio->precio = 30;
-        $servicio->costo= 20;
-        $servicio->diferencia = $servicio->precio - $servicio->costo;
-        $servicio->save();
-        
-        
+   
         
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE CERTIFICACION DE CEDULA DE IDENTIDAD";
         $servicio->sigla = "P_CERT_CI_15_UNIMOVIL";
+        $servicio->color = "info";
+        $servicio->descripcion="N/D PAGO SEGIP MEDIANTE UNINET";
+        $servicio->id_plataforma = 1;
+        $servicio->precio = 15;
+        $servicio->costo= 10;
+        $servicio->diferencia = $servicio->precio - $servicio->costo;
+        $servicio->save();
+        
+        $servicio = new Servicio();
+        $servicio->nombre = "PAGO DE CERTIFICACION DE CEDULA DE IDENTIDAD";
+        $servicio->sigla = "P_CERT_CI_15_UNIMOVIL";
+        $servicio->color = "info";
         $servicio->descripcion="N/D PAGO SEGELIC MEDIANTE UNINET";
         $servicio->id_plataforma = 1;
         $servicio->precio = 15;
@@ -140,6 +143,7 @@ class ServicioSeeder extends Seeder
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE CERTIFICACION DE CEDULA DE IDENTIDAD";
         $servicio->sigla = "P_CERT_CIE_15_PRODEM";
+        $servicio->color = "info";
         $servicio->descripcion="Debito por pago de servicio SEGIP CERTIFICACIONES EXTRANJERO";
         $servicio->id_plataforma = 2;
         $servicio->precio = 15;
@@ -150,6 +154,7 @@ class ServicioSeeder extends Seeder
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE CERTIFICACION DE CEDULA DE IDENTIDAD";
         $servicio->sigla = "P_CERT_CI_15_PRODEM";
+        $servicio->color = "info";
         $servicio->descripcion="Debito por pago de servicio SEGIP CERTIFICACIONES";
         $servicio->id_plataforma = 2;
         $servicio->precio = 15;
@@ -160,6 +165,7 @@ class ServicioSeeder extends Seeder
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE DUPLICADO DE LICENCIAS DE CONDUCIR AUTOMOVIL";
         $servicio->sigla = "P_DUP_ABCP_170_UNIMOVIL";
+        $servicio->color = "info";
         $servicio->descripcion="N/D PAGO SEGELIC MEDIANTE UNINET";
         $servicio->id_plataforma = 1;
         $servicio->precio = 170;
@@ -170,6 +176,7 @@ class ServicioSeeder extends Seeder
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE DUPLICADO DE LICENCIAS DE CONDUCIR AUTOMOVIL";
         $servicio->sigla = "P_DUP_ABCP_170_PRODEM";
+        $servicio->color = "info";
         $servicio->descripcion="Debito por pago de servicio SEGIP LICENCIAS DE CONDUCIR NACIONAL";
         $servicio->id_plataforma = 2;
         $servicio->precio = 170;
@@ -177,9 +184,22 @@ class ServicioSeeder extends Seeder
         $servicio->diferencia = $servicio->precio - $servicio->costo;
         $servicio->save();
         
+               
+        $servicio = new Servicio();
+        $servicio->nombre = "PAGO DE INSPECCION TECNICA VEHICULAR - PARTICULAR";
+        $servicio->sigla = "P_INS_TEC_40";
+        $servicio->color = "secondary";
+        $servicio->descripcion="N/D PAGO IMPUESTOS VIA WEB RUAT";
+        $servicio->id_plataforma = 1;
+        $servicio->precio = 40;
+        $servicio->costo= 30;
+        $servicio->diferencia = $servicio->precio - $servicio->costo;
+        $servicio->save();
+        
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE B-SISA PARA CARGAR COMBUSTIBLE";
         $servicio->sigla = "P_B_SISA_70";
+        $servicio->color = "secondary";
         $servicio->descripcion="N/D TRASP. A ANH - RECAUDADORA";
         $servicio->id_plataforma = 1;
         $servicio->precio = 70;
@@ -187,15 +207,55 @@ class ServicioSeeder extends Seeder
         $servicio->diferencia = $servicio->precio - $servicio->costo;
         $servicio->save();
         
+
+        
         $servicio = new Servicio();
-        $servicio->nombre = "PAGO DE ANTECEDENTES FELCC O FELCN";
-        $servicio->sigla = "P_ANT_CC_CN_100";
-        $servicio->descripcion="N/D PAGO CERT. ANTECEDENTES CUDAP QR";
+        $servicio->nombre = "PAGO DE INSPECCION TECNICA VEHICULAR - CON MULTA I";
+        $servicio->sigla = "P_INS_TEC_60";
+        $servicio->color = "secondary";
+        $servicio->descripcion="N/D PAGO IMPUESTOS VIA WEB RUAT";
         $servicio->id_plataforma = 1;
-        $servicio->precio = 100;
+        $servicio->precio = 60;
+        $servicio->costo= 50;
+        $servicio->diferencia = $servicio->precio - $servicio->costo;
+        $servicio->save();
+        
+        $servicio = new Servicio();
+        $servicio->nombre = "PAGO DE INSPECCION TECNICA VEHICULAR - CON MULTA II";
+        $servicio->sigla = "P_INS_TEC_100";
+        $servicio->color = "secondary";
+        $servicio->descripcion="N/D PAGO IMPUESTOS VIA WEB RUAT";
+        $servicio->id_plataforma = 1;
+        $servicio->precio = 90;
         $servicio->costo= 80;
         $servicio->diferencia = $servicio->precio - $servicio->costo;
         $servicio->save();
+ 
+        $servicio = new Servicio();
+        $servicio->nombre = "PAGO DE INSPECCION TECNICA VEHICULAR - CON MULTA III";
+        $servicio->sigla = "P_INS_TEC_100";
+        $servicio->color = "secondary";
+        $servicio->descripcion="N/D PAGO IMPUESTOS VIA WEB RUAT";
+        $servicio->id_plataforma = 1;
+        $servicio->precio = 110;
+        $servicio->costo= 100;
+        $servicio->diferencia = $servicio->precio - $servicio->costo;
+        $servicio->save();
+        
+        $servicio = new Servicio();
+        $servicio->nombre = "PAGO DE INSPECCION TECNICA VEHICULAR - PUBLICO";
+        $servicio->sigla = "P_INS_TEC_30";
+        $servicio->color = "secondary";
+        $servicio->descripcion="N/D PAGO IMPUESTOS VIA WEB RUAT";
+        $servicio->id_plataforma = 1;
+        $servicio->precio = 30;
+        $servicio->costo= 20;
+        $servicio->diferencia = $servicio->precio - $servicio->costo;
+        $servicio->save();
+        
+ 
+        
+   
         
         $servicio = new Servicio();
         $servicio->nombre = "OTROS PAGOS";

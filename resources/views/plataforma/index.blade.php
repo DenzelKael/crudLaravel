@@ -13,7 +13,7 @@
 
         <a class="btn btn-success" href="{{ url('plataforma/create') }}">Registrar Nueva plataforma</a>
         <br><br>
-        <table class="table table-light ">
+        <table id="plataformas" class="table table-light ">
             <thead class="thead-light align-middle">
                 <tr>
                     <th>#</th>

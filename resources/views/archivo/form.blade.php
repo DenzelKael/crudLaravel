@@ -34,7 +34,6 @@
 </div>
 <div class="form-group">
     <label for="archivo">Archivo de Excel:</label>
-
     <input type="file" class="form-control" name="archivo" value="" id="archivo">
 </div>
 

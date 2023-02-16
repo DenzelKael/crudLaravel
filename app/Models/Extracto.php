@@ -11,19 +11,29 @@ class Extracto extends Model
 {
     use HasFactory;
     
-    protected $fillable=['id_servicio','id_archivo','fecha','AG','descripcion','nro_documento','monto','saldo','sigla'];
+    protected $fillable=['id_banco','id_servicio','fecha','AG','descripcion','nro_documento','monto','deposito','saldo','sigla'];
     
     
     public static function createFromArchivo( $archivo, $file ){
-        // $file = $request->file('archivo');
-        
-       
-        Excel::import(new ExtractoImport($archivo), $file);
-      
+        $extracto = new ExtractoImport($archivo);
+        Excel::import($extracto, $file);
+        return $extracto->obtenerMontosInicioYFin();
     }
     
     public function servicio(){
         return $this->belongsTo(Servicio::class, 'id_servicio');
+    }
+    public function user(){
+        return $this->belongsTo(User::class, 'id_user');
+    }
+    
+    public function banco(){
+        return $this->belongsTo(Banco::class, 'id_banco');
+    }
+    
+     
+    public function plataforma(){
+        return $this->belongsTo(Plataforma::class, 'id_plataforma');
     }
 }
 
