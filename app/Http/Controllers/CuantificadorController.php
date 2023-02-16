@@ -20,6 +20,8 @@ class CuantificadorController extends Controller
         /* $datos['extractos'] = Extracto::paginate(5);
         return view('cuantificador.index', $datos); */
     }
+    
+
 
     /**
      * Show the form for creating a new resource.
@@ -61,25 +63,19 @@ class CuantificadorController extends Controller
         
        
     } 
-     
-    public function obtenerTotalesParciales($id){
-        return Extracto::join('bancos','extractos.id_banco','=','bancos.id')
-        ->join('plataformas','bancos.id_plataforma','=','plataformas.id')
-        ->with('servicio')
-        ->selectRaw('id_servicio, bancos.id, extractos.descripcion, extractos.deposito, extractos.monto, 
-        plataformas.id as id_plataforma, count(*) as cantidad')
-        ->where(['extractos.id_banco'=> $id ])
-        ->groupBy('extractos.descripcion')->groupBy('extractos.monto')
-        ->orderBy('id_servicio', 'asc')
-        ->get();
-    
-    }
-     
+        
+
     public function show($id)
     {
-        $datos['cuantificadores']  = $this->obtenerTotalesParciales($id);
+        $datos['cuantificadores']  = Extracto::obtenerTotalesParciales($id);
+        //dd($datos['cuantificadores']);
 
     return view('cuantificador.index', $datos); 
+    }
+    
+    public function pdf($id)
+    {
+        $datos['cuantificadores']  = $this->obtenerTotalesParciales($id);
     }
 
     /**

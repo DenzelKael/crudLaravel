@@ -33,24 +33,38 @@
                     <thead class="thead-light">
                         <tr>
                             <th>Id</th>
-                            <th>Usuario</th>
-                            <th>Plataforma</th>
                             <th>Fecha</th>
-                            <th>Monto de Apertura</th>
-                            <th>Monto de Cierre</th>
+                            <th>Monto de Apertura⬇</th>
+                            <th>Total Depósitos ⬇</th>
+                            <th>Total Utilizado ⬆</th>
+                            <th>Total Retiros ⬆</th>
+                            <th>Monto de Cierre ⬆</th>
+                            <th>Diferencia</th>
+                            <th>Total Movimientos</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($bancos as $banco)
-                            <tr>
-                                <td>{{ $banco->id }}</td>
-                                <td>{{ $banco->user?->name }}</td>
-                                <td>{{ $banco->plataforma?->nombre }}</td>
+                            <tr class="text-right">
+                                <td class="table-secondary">{{ $banco->id }}</td>
                                 <td>{{ $banco->fecha_cierre }}</td>
-                                <td class="text-right table-warning">{{ $banco->monto_apertura }}</td>
-                                <td class="text-right table-danger">{{ $banco->monto_cierre }}</td>
+                                <td class="table-info">{{ number_format($banco->monto_apertura,2) }}</td>
+                                <td class="table-success">{{number_format($banco->total_depositos,2)}}</td>
+                                <td class="table-primary">{{number_format($banco->total_capital_utilizado,2)}}</td>
+                                <td class="table-warning">{{number_format($banco->total_retiros,2)}}</td>
+                                <td class="table-danger">{{ number_format($banco->monto_cierre,2) }}</td>
+                                <td class="text-center"> 
+                               
+                                @if ($banco->diferencia=='0')
+                                <i class="fas fa-check-square btn-success" style="font-size: 1.7em;"></i>    
+                                @else
+                                <i class="fas fa-window-close btn-danger btn-success" style="font-size: 1.7em;"></i>
+                                <br><span class="text-danger">{{$banco->diferencia}}</span>
+                                @endif
+                                </td>
+                                <td class="table-secondary">{{$banco->total_movimientos}}</td>
                                 <td class="text-center"><span class="btn btn-danger">{{ $banco->estado }}</span></td>
                                 <td>
                                     <a title="Ver Detalle" href="{{url('extracto/'.$banco->id) }}" class="btn btn-info">

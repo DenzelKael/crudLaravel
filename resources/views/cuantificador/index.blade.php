@@ -22,8 +22,8 @@
                 <tr class="text-center">
                     <th>#</th>
                     <th>Descripcion</th>
-                    <th>Deposito</th>
-                    <th>Retiro</th>
+                    <th>Deposito ⬇</th>
+                    <th>Retiro ⬆</th>
                     <th>Sigla Servicio</th>
                     <th>Cantidad</th>
                     <th>Capital</th>
@@ -57,5 +57,7 @@
         </table>
        {{--  {!! $cuantificadores->links() !!} --}}
         <a class="btn btn-danger" href="{{ url('extracto') }}">Volver Atras</a>
+        <a class="btn btn-info" href="{{ url('pdf') }}">Generar PDF</a>
     </div>
+    <br>
 @endsection

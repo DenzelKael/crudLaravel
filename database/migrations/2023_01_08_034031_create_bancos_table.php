@@ -21,7 +21,12 @@ return new class extends Migration
             ->constrained('plataformas'); 
             $table->date('fecha_cierre')->nullable();
             $table->float('monto_apertura');
+            $table->float('total_capital_utilizado')->nullable();
+            $table->float('total_depositos')->nullable();
+            $table->float('total_retiros')->nullable();
             $table->float('monto_cierre')->nullable();
+            $table->float('diferencia')->nullable();
+            $table->integer('total_movimientos')->nullable();
             $table->string('estado');
             $table->timestamps();
         });

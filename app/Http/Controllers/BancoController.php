@@ -70,14 +70,20 @@ class BancoController extends Controller
         $datosArchivo['estado']= 'ABIERTO';
  
          $banco = Banco::create($datosArchivo);
-        // dd($banco);
+        
          
          $montos = Extracto::createFromArchivo( $banco, $request->file('archivo') );
-        
-               
-         
-        Banco::where('id', $banco['id'])->update(['monto_apertura' => $montos['inicio'],
-        'monto_cierre'=> $montos['fin']]);
+         $montos['totales']= Extracto::obtenerTotalesFinales($banco['id']);    
+       
+        Banco::where('id', $banco['id'])->update([
+        'monto_apertura' => $montos['inicio'],
+        'monto_cierre'=> $montos['fin'],
+        'total_capital_utilizado'=> $montos['totales']['totalCapital'],
+        'total_movimientos' => $montos['totales']['totalCantidad'],
+        'total_depositos' =>$montos['totales']['totalDepositos'],
+        'total_retiros' =>$montos['totales']['totalRetiros'],
+        'diferencia' => $montos['inicio']+$montos['totales']['totalDepositos']-$montos['totales']['totalRetiros']-$montos['totales']['totalCapital']-$montos['fin']
+    ]);
     
         
         return redirect('/banco')->with('mensaje',"Archivo de Excel Agregado Correctamente. ");

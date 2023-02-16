@@ -47,6 +47,10 @@ class ExtractoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+     
+
+    
+    
     public function show($id)
     {
         $datos['extractos'] = Extracto::where('id_banco', $id)->with('servicio')->paginate(15);

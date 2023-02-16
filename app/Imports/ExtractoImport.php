@@ -77,7 +77,7 @@ class ExtractoImport implements ToModel, WithHeadingRow, ToCollection
                         } else {
                             $deposito = 0;
                         }
-
+                        
                         Extracto::create([
                             'id_banco' => $this->archivo['id'],
                             'id_servicio' => $this->servicio->id,
@@ -91,6 +91,9 @@ class ExtractoImport implements ToModel, WithHeadingRow, ToCollection
                             'sigla' => $this->servicio->sigla,
 
                         ]);
+                        //echo $monto." - ";
+                        //echo $deposito;
+                        //echo "<br>";
                         if ($sw) {
                         if ($monto>=0) {
                             $this->montos['inicio'] = (float) $monto + str_replace(',', '', trim($row['saldo']));
@@ -138,6 +141,7 @@ class ExtractoImport implements ToModel, WithHeadingRow, ToCollection
                 dd($this->servicio, $th);
             }
         }
+        //exit;
     }
 
     public function headingRow(): int

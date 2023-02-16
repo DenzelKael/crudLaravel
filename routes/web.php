@@ -25,8 +25,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-/* Route::get('empleado/', [EmpleadoController::class,'index']);
-Route::get('empleado/create', [EmpleadoController::class,'create']); */
+/*  Route::get('empleado/', [EmpleadoController::class,'index']); */
+
 Route::resource('banco', bancoController::class)->middleware('auth');
 Route::resource('archivo', ArchivoController::class)->middleware('auth');
 Route::resource('extracto', ExtractoController::class)->middleware('auth');
@@ -35,6 +35,7 @@ Route::resource('plataforma', PlataformaController::class)->middleware('auth');
 Route::resource('servicio', ServicioController::class)->middleware('auth');
 
 Route::resource('cuantificador', CuantificadorController::class)->middleware('auth');
+//Route::get('cuantificador/pdf', CuantificadorController::class)->middleware('auth');
 Auth::routes(['register'=>false, 'reset'=>false]); 
 /* Route::post('empleado/', [EmpleadoController::class,'store']);
 Route::get('empleado/{$id}', [EmpleadoController::class,'destroy']);

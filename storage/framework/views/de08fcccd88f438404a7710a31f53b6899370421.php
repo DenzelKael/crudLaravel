@@ -23,8 +23,8 @@
                 <tr class="text-center">
                     <th>#</th>
                     <th>Descripcion</th>
-                    <th>Deposito</th>
-                    <th>Retiro</th>
+                    <th>Deposito ⬇</th>
+                    <th>Retiro ⬆</th>
                     <th>Sigla Servicio</th>
                     <th>Cantidad</th>
                     <th>Capital</th>
@@ -58,7 +58,9 @@
         </table>
        
         <a class="btn btn-danger" href="<?php echo e(url('extracto')); ?>">Volver Atras</a>
+        <a class="btn btn-info" href="<?php echo e(url('pdf')); ?>">Generar PDF</a>
     </div>
+    <br>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layout.adminlte', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Changa\resources\views/cuantificador/index.blade.php ENDPATH**/ ?>
