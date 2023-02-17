@@ -15,7 +15,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <?php endif; ?>
-
+        <br>
+        <a class="btn btn-danger" href="<?php echo e(url('home')); ?>">Volver Atras</a>
+        <a class="btn btn-info" href="<?php echo e(url('pdf')); ?>">Generar PDF</a>
+        <br><br>
         
 
         <table class="table table-light ">
@@ -57,8 +60,7 @@
                 </tfoot>
         </table>
        
-        <a class="btn btn-danger" href="<?php echo e(url('extracto')); ?>">Volver Atras</a>
-        <a class="btn btn-info" href="<?php echo e(url('pdf')); ?>">Generar PDF</a>
+       
     </div>
     <br>
 <?php $__env->stopSection(); ?>

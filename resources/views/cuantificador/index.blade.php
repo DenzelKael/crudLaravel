@@ -14,7 +14,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-
+        <br>
+        <a class="btn btn-danger" href="{{ url('home') }}">Volver Atras</a>
+        <a class="btn btn-info" href="{{ url('pdf') }}">Generar PDF</a>
+        <br><br>
         {{-- <a class="btn btn-success" href="{{ url('cuantificador/create') }}">Registrar Nueva cuantificador</a> --}}
 
         <table class="table table-light ">
@@ -56,8 +59,7 @@
                 </tfoot>
         </table>
        {{--  {!! $cuantificadores->links() !!} --}}
-        <a class="btn btn-danger" href="{{ url('extracto') }}">Volver Atras</a>
-        <a class="btn btn-info" href="{{ url('pdf') }}">Generar PDF</a>
+       
     </div>
     <br>
 @endsection

@@ -44,15 +44,17 @@
                         <td class="table-info">{{ $servicio->diferencia }}</td>
                         <td>{{ $servicio->descripcion }}</td>
                         <td>
-                            <a href="{{ url('servicio/' . $servicio->id . '/edit') }}" class="btn btn-warning">Editar</a>
-
-
-                            <form action="{{ url('servicio/' . $servicio->id) }}" method="post" class="d-inline">
+                            <a title="Editar" href="{{ url('banco/' . $servicio->id . '/edit') }}" class="btn btn-warning">
+                                <i class="fas fa-edit" aria-hidden="true"></i>
+                            </a>
+                            <form action="{{ url('banco/' . $servicio->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
-                                <input class="btn btn-danger" type="submit"
-                                    onclick="return confirm('¿Quieres realmente borrar?')" value="Borrar">
-                            </form>
+                                <button title="Eliminar" class="btn btn-danger" type="submit"
+                                    onclick="return confirm('¿Quieres realmente borrar?')" >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </form> 
 
                         </td>
                     </tr>

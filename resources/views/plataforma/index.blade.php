@@ -31,15 +31,17 @@
                         <td >{{ $plataforma->descripcion }}</td>
                         <td >{{ $plataforma->saldo }}</td>
                         <td>
-                            <a href="{{ url('plataforma/' . $plataforma->id . '/edit') }}" class="btn btn-warning">Editar</a>
-
-
-                            <form action="{{ url('plataforma/' . $plataforma->id) }}" method="post" class="d-inline">
+                            <a title="Editar" href="{{ url('banco/' . $plataforma->id . '/edit') }}" class="btn btn-warning">
+                                <i class="fas fa-edit" aria-hidden="true"></i>
+                            </a>
+                            <form action="{{ url('banco/' . $plataforma->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
-                                <input class="btn btn-danger" type="submit"
-                                    onclick="return confirm('¿Quieres realmente borrar?')" value="Borrar">
-                            </form>
+                                <button title="Eliminar" class="btn btn-danger" type="submit"
+                                    onclick="return confirm('¿Quieres realmente borrar?')" >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </form> 
 
                         </td>
                     </tr>

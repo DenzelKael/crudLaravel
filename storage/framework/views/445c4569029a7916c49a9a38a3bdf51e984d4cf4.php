@@ -45,16 +45,18 @@
                         <td class="table-info"><?php echo e($servicio->diferencia); ?></td>
                         <td><?php echo e($servicio->descripcion); ?></td>
                         <td>
-                            <a href="<?php echo e(url('servicio/' . $servicio->id . '/edit')); ?>" class="btn btn-warning">Editar</a>
-
-
-                            <form action="<?php echo e(url('servicio/' . $servicio->id)); ?>" method="post" class="d-inline">
+                            <a title="Editar" href="<?php echo e(url('banco/' . $servicio->id . '/edit')); ?>" class="btn btn-warning">
+                                <i class="fas fa-edit" aria-hidden="true"></i>
+                            </a>
+                            <form action="<?php echo e(url('banco/' . $servicio->id)); ?>" method="post" class="d-inline">
                                 <?php echo csrf_field(); ?>
                                 <?php echo e(method_field('DELETE')); ?>
 
-                                <input class="btn btn-danger" type="submit"
-                                    onclick="return confirm('¿Quieres realmente borrar?')" value="Borrar">
-                            </form>
+                                <button title="Eliminar" class="btn btn-danger" type="submit"
+                                    onclick="return confirm('¿Quieres realmente borrar?')" >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </form> 
 
                         </td>
                     </tr>

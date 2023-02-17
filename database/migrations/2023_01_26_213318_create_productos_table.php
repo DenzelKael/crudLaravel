@@ -18,9 +18,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->float('precio');
             $table->float('costo');
+            $table->float('diferencia');
             $table->integer('existencia');
-            $table->integer('id_categoria');
-            $table->float('descuento');
             $table->string('foto');
             $table->timestamps();
         });

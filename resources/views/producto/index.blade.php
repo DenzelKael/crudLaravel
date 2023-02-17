@@ -30,22 +30,23 @@
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Costo</th>
+                    <th>Diferencia</th>
                     <th>Existencia</th>
-                    <th>Descuento</th>
-                    <th>ID Categoria</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody class="align-middle">
                 @foreach ($productos as $producto)
                     <tr>
-                        <td>
+                    <td>{{$producto->id}}</td>
+                      {{--   <td>
                             <img class="img-thumbnail img-fluid" src="{{ asset('storage') . '/' . $producto->foto }}"
                                 width="50" alt="" srcset="">
-                        </td>
+                        </td> --}}
                         <td style="text-transform: uppercase">{{ $producto->nombre }}</td>
                         <td class="table-primary">{{ $producto->precio }}</td>
                         <td>{{ $producto->costo }}</td>
+                        <td>{{ $producto->diferencia }}</td>
                         <td
                             class="@if ($producto->existencia < 10) table-danger
                         @elseif ($producto->existencia >= 100)
@@ -53,18 +54,21 @@
                         @else
                             table-warning @endif">
                             {{ $producto->existencia }}</td>
-                        <td>{{ $producto->descuento }}</td>
-                        <td>{{ $producto->id_categoria }}</td>
+            
                         <td>
-                            <a href="{{ url('producto/' . $producto->id . '/edit') }}" class="btn btn-warning">Editar</a>
-
-
-                            <form action="{{ url('producto/' . $producto->id) }}" method="post" class="d-inline">
+                           
+                            <a title="Editar" href="{{ url('banco/' . $producto->id . '/edit') }}" class="btn btn-warning">
+                                <i class="fas fa-edit" aria-hidden="true"></i>
+                            </a>
+                            <form action="{{ url('banco/' . $producto->id) }}" method="post" class="d-inline">
                                 @csrf
                                 {{ method_field('DELETE') }}
-                                <input class="btn btn-danger" type="submit"
-                                    onclick="return confirm('¿Quieres realmente borrar?')" value="Borrar">
-                            </form>
+                                <button title="Eliminar" class="btn btn-danger" type="submit"
+                                    onclick="return confirm('¿Quieres realmente borrar?')" >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </form> 
+                        
 
                         </td>
                     </tr>

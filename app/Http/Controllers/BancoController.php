@@ -17,10 +17,7 @@ class BancoController extends Controller
      */
     public function index()
     {
-    
-        /* SELECT * FROM `bancos` join plataformas on bancos.id_plataforma=plataformas.id 
-        join users on users.id=bancos.id_user; */
-        
+          
         $datos['bancos'] = Banco::select('*')->with('user')->with('plataforma')->get();
         $datos['plataformas'] = Plataforma::pluck('nombre','id');
         
@@ -43,6 +40,19 @@ class BancoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     
+     public function actualizarTotales($banco,$montos){
+        Banco::where('id', $banco['id'])->update([
+            'monto_apertura' => $montos['inicio'],
+            'monto_cierre'=> $montos['fin'],
+            'total_capital_utilizado'=> $montos['totales']['totalCapital'],
+            'total_movimientos' => $montos['totales']['totalCantidad'],
+            'total_depositos' =>$montos['totales']['totalDepositos'],
+            'total_retiros' =>$montos['totales']['totalRetiros'],
+            'diferencia' => $montos['inicio']+$montos['totales']['totalDepositos']-$montos['totales']['totalRetiros']-$montos['totales']['totalCapital']-$montos['fin']
+        ]);
+     }
+     
     public function store(Request $request)
     {
       
@@ -73,17 +83,10 @@ class BancoController extends Controller
         
          
          $montos = Extracto::createFromArchivo( $banco, $request->file('archivo') );
-         $montos['totales']= Extracto::obtenerTotalesFinales($banco['id']);    
-       
-        Banco::where('id', $banco['id'])->update([
-        'monto_apertura' => $montos['inicio'],
-        'monto_cierre'=> $montos['fin'],
-        'total_capital_utilizado'=> $montos['totales']['totalCapital'],
-        'total_movimientos' => $montos['totales']['totalCantidad'],
-        'total_depositos' =>$montos['totales']['totalDepositos'],
-        'total_retiros' =>$montos['totales']['totalRetiros'],
-        'diferencia' => $montos['inicio']+$montos['totales']['totalDepositos']-$montos['totales']['totalRetiros']-$montos['totales']['totalCapital']-$montos['fin']
-    ]);
+         $montos['totales']= Extracto::obtenerTotalesFinales($banco['id']);  
+         
+         $this->actualizarTotales($banco,$montos);
+     
     
         
         return redirect('/banco')->with('mensaje',"Archivo de Excel Agregado Correctamente. ");

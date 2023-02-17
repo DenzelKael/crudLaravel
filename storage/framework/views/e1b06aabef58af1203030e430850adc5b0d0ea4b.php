@@ -42,7 +42,7 @@
         </table>
         <?php echo $extractos->links(); ?>
 
-        <a class="btn btn-danger" href="<?php echo e(url('banco')); ?>">Volver Atras</a>
+        <a class="btn btn-danger" href="<?php echo e(url('home')); ?>">Volver Atras</a>
         <a class="btn btn-warning" href="<?php echo e(url('cuantificador/'.$extracto->id_banco)); ?>">Cuantificar</a>
     </div>
 <?php $__env->stopSection(); ?>

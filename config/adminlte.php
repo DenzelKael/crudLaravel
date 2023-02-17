@@ -330,14 +330,9 @@ return [
             'icon' => 'fas fa-university',
         ],
         [
-            'text' => 'Productos',
-            'url'  => '/producto',
+            'text' => 'Extras',
+            'url'  => '#',
             'icon' => 'fas fa-fw fa-store',
-        ],
-        [
-            'text' => 'Archivos',
-            'url'  => '/archivo_home',
-            'icon' => 'fas fa-fw fa-file',
         ],
         [
             'text'    => 'Configuraciones',
@@ -350,6 +345,10 @@ return [
                 [
                     'text' => 'Servicios',
                     'url'  => '/servicio',
+                ],
+                [
+                    'text' => 'Productos',
+                    'url'  => '/producto',
                 ],
            /*      [
                     'text'    => 'level_one',
@@ -383,18 +382,28 @@ return [
         ],
         ['header' => 'ETIQUETAS'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
+            'text'       => 'Cedulas de Identidad',
+            'icon_color' => 'danger',
             'url'        => '#',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
+            'text'       => 'Licencias de Conducir',
+            'icon_color' => 'warning',
             'url'        => '#',
         ],
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
+            'text'       => 'Antecedentes Policiales',
+            'icon_color' => 'success',
+            'url'        => '#',
+        ],
+        [
+            'text'       => 'Certificaciones y Duplicados',
+            'icon_color' => 'info',
+            'url'        => '#',
+        ],
+        [
+            'text'       => 'Inspeccion Tecnica y B-SISA',
+            'icon_color' => 'secondary',
             'url'        => '#',
         ],
     ],

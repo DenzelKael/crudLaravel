@@ -25,22 +25,20 @@
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Costo</th>
+                    <th>Diferencia</th>
                     <th>Existencia</th>
-                    <th>Descuento</th>
-                    <th>ID Categoria</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody class="align-middle">
                 <?php $__currentLoopData = $productos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $producto): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td>
-                            <img class="img-thumbnail img-fluid" src="<?php echo e(asset('storage') . '/' . $producto->foto); ?>"
-                                width="50" alt="" srcset="">
-                        </td>
+                    <td><?php echo e($producto->id); ?></td>
+                      
                         <td style="text-transform: uppercase"><?php echo e($producto->nombre); ?></td>
                         <td class="table-primary"><?php echo e($producto->precio); ?></td>
                         <td><?php echo e($producto->costo); ?></td>
+                        <td><?php echo e($producto->diferencia); ?></td>
                         <td
                             class="<?php if($producto->existencia < 10): ?> table-danger
                         <?php elseif($producto->existencia >= 100): ?>
@@ -48,19 +46,22 @@
                         <?php else: ?>
                             table-warning <?php endif; ?>">
                             <?php echo e($producto->existencia); ?></td>
-                        <td><?php echo e($producto->descuento); ?></td>
-                        <td><?php echo e($producto->id_categoria); ?></td>
+            
                         <td>
-                            <a href="<?php echo e(url('producto/' . $producto->id . '/edit')); ?>" class="btn btn-warning">Editar</a>
-
-
-                            <form action="<?php echo e(url('producto/' . $producto->id)); ?>" method="post" class="d-inline">
+                           
+                            <a title="Editar" href="<?php echo e(url('banco/' . $producto->id . '/edit')); ?>" class="btn btn-warning">
+                                <i class="fas fa-edit" aria-hidden="true"></i>
+                            </a>
+                            <form action="<?php echo e(url('banco/' . $producto->id)); ?>" method="post" class="d-inline">
                                 <?php echo csrf_field(); ?>
                                 <?php echo e(method_field('DELETE')); ?>
 
-                                <input class="btn btn-danger" type="submit"
-                                    onclick="return confirm('¿Quieres realmente borrar?')" value="Borrar">
-                            </form>
+                                <button title="Eliminar" class="btn btn-danger" type="submit"
+                                    onclick="return confirm('¿Quieres realmente borrar?')" >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </form> 
+                        
 
                         </td>
                     </tr>

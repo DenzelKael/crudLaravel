@@ -32,16 +32,18 @@
                         <td ><?php echo e($plataforma->descripcion); ?></td>
                         <td ><?php echo e($plataforma->saldo); ?></td>
                         <td>
-                            <a href="<?php echo e(url('plataforma/' . $plataforma->id . '/edit')); ?>" class="btn btn-warning">Editar</a>
-
-
-                            <form action="<?php echo e(url('plataforma/' . $plataforma->id)); ?>" method="post" class="d-inline">
+                            <a title="Editar" href="<?php echo e(url('banco/' . $plataforma->id . '/edit')); ?>" class="btn btn-warning">
+                                <i class="fas fa-edit" aria-hidden="true"></i>
+                            </a>
+                            <form action="<?php echo e(url('banco/' . $plataforma->id)); ?>" method="post" class="d-inline">
                                 <?php echo csrf_field(); ?>
                                 <?php echo e(method_field('DELETE')); ?>
 
-                                <input class="btn btn-danger" type="submit"
-                                    onclick="return confirm('¿Quieres realmente borrar?')" value="Borrar">
-                            </form>
+                                <button title="Eliminar" class="btn btn-danger" type="submit"
+                                    onclick="return confirm('¿Quieres realmente borrar?')" >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </form> 
 
                         </td>
                     </tr>

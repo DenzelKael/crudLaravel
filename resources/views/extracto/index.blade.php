@@ -52,7 +52,7 @@
             </tbody>
         </table>
         {!! $extractos->links()!!}
-        <a class="btn btn-danger" href="{{ url('banco') }}">Volver Atras</a>
+        <a class="btn btn-danger" href="{{ url('home') }}">Volver Atras</a>
         <a class="btn btn-warning" href="{{ url('cuantificador/'.$extracto->id_banco) }}">Cuantificar</a>
     </div>
 @endsection

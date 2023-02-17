@@ -54,13 +54,15 @@ class ExtractoImport implements ToModel, WithHeadingRow, ToCollection
     public function collection(Collection $rows)
     {
         $sw = true;
+        $sx = true;
         if ($this->archivo['id_plataforma'] == "1") {
 
             try {
                 foreach ($rows as $row) {
 
                     if (
-                        trim($row['fecha_movimiento']) != "NULL" && $row['fecha_movimiento'] != null && $row['fecha_movimiento'] != "" && !is_null($row['fecha_movimiento'])
+                        trim($row['fecha_movimiento']) != "NULL" && $row['fecha_movimiento'] != null 
+                        && $row['fecha_movimiento'] != "" && !is_null($row['fecha_movimiento'])
                         && $row['fecha_movimiento'] != 'Total Créditos:'
                         && $row['fecha_movimiento'] != 'Total Débitos:'
                         && $row['fecha_movimiento'] != 'Tránsito'
@@ -107,21 +109,25 @@ class ExtractoImport implements ToModel, WithHeadingRow, ToCollection
                     }
                 }
             } catch (\Throwable $th) {
-                dd($this->archivo['id_plataforma'], $this->servicio->id, $row,  $th);
+                dd(  $row,  $th);
             }
         } else {
             try {
                 foreach ($rows as $row) {
 
                     /*           if (
-                        trim($row['fecha_movimiento']) != "NULL" && $row['fecha_movimiento'] != null && $row['fecha_movimiento'] != "" && !is_null($row['fecha_movimiento'])
+                        trim($row['fecha_movimiento']) != "NULL" && $row['fecha_movimiento'] != null 
+                        && $row['fecha_movimiento'] != "" && !is_null($row['fecha_movimiento'])
                         && $row['fecha_movimiento'] != 'Total Créditos:'
                     ) { */
 
-                    $contains = Str::contains($row['referencia'], ' Registro:');
+                    //$contains = Str::contains($row['referencia'], ' Registro:');
                     $referencia = Str::before($row['referencia'], ' Registro:');
                     $fecha = gmdate("Y-m-d", (($row['fecha'] - 25569) * 86400));
-                    $this->servicio = $this->addServicio($referencia, str_replace(',', '', trim($row['retiro'])));
+                    $retiro = str_replace(',', '', trim($row['retiro']));
+                    $deposito = str_replace(',', '', trim($row['deposito']));
+                    $saldo = str_replace(',', '', trim($row['saldo']));
+                    $this->servicio = $this->addServicio($referencia, $retiro);
                     //dd($referencia, $fecha, $$this->servicio);
 
                     Extracto::create([
@@ -130,12 +136,23 @@ class ExtractoImport implements ToModel, WithHeadingRow, ToCollection
                         'AG' => $row['agencia'],
                         'descripcion' => $referencia,
                         'nro_documento' => $row['hora'],
-                        'monto' => str_replace(',', '', trim($row['retiro'])),
-                        'deposito' => str_replace(',', '', trim($row['deposito'])),
-                        'saldo' => str_replace(',', '', trim($row['saldo'])),
+                        'monto' => $retiro,
+                        'deposito' => $deposito,
+                        'saldo' => $saldo,
                         'sigla' => $this->servicio->sigla,
                         'id_servicio' => $this->servicio->id
                     ]);
+               
+                    if ($sx) {
+                        if ($retiro==0) {
+                            $this->montos['inicio'] = (float) $deposito - $saldo;
+                        }else{
+                            $this->montos['inicio'] = (float) $retiro + $saldo;
+                        }
+                            $sx = !$sx;
+                        }
+                        $this->montos['fin'] = $saldo;
+                    
                 }
             } catch (\Throwable $th) {
                 dd($this->servicio, $th);
