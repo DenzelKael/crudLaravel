@@ -7,7 +7,9 @@
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap5.min.css">
 @endsection
+
 @section('js')
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>
@@ -18,12 +20,12 @@
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap5.min.js"></script>
 
-
+    
     <script>
         $(document).ready(function() {
             $('#servicios').DataTable(castellano);
             $('#plataformas').DataTable(castellano);
-
+           
         });
         const castellano = {
             "language": {
@@ -38,8 +40,11 @@
                 }
             }
         }
+    
+        
     </script>
 @endsection
 @section('js')
+    
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 @stop

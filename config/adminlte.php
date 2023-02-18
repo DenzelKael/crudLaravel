@@ -326,13 +326,14 @@ return [
         ],
         [
             'text' => 'Bancos',
-            'url'  => '/banco',
+            'url'  => 'banco',
             'icon' => 'fas fa-university',
+           
         ],
         [
-            'text' => 'Extras',
-            'url'  => '#',
-            'icon' => 'fas fa-fw fa-store',
+            'text' => 'Cajas',
+            'url'  => 'caja',
+            'icon' => 'fas fa-cash-register',
         ],
         [
             'text'    => 'Configuraciones',
@@ -380,32 +381,26 @@ return [
                 ], */
             ],
         ],
-        ['header' => 'ETIQUETAS'],
+        ['header' => 'PAGINAS DE SERVICIOS'],
         [
-            'text'       => 'Cedulas de Identidad',
-            'icon_color' => 'danger',
-            'url'        => '#',
+            'text'       => 'CUDAP',
+            'icon_color' => 'fas fa-list-alt btn-primary',
+            'url'        => 'https://estadodigital.mingobierno.gob.bo/cudap/certificado',
+            'target'     => '_blank'
         ],
         [
-            'text'       => 'Licencias de Conducir',
-            'icon_color' => 'warning',
-            'url'        => '#',
+            'text'       => 'Unimovil Plus',
+            'icon_color' => 'fas fa-credit-card btn-danger',
+            'url'        => 'https://www.bancounion.com.bo/BancaDigital/UnimovilPlus',
+            'target'     => '_blank'
         ],
         [
-            'text'       => 'Antecedentes Policiales',
-            'icon_color' => 'success',
-            'url'        => '#',
+            'text'       => 'ProdemNet',
+            'icon_color' => 'fas fa-money-bill-alt btn-success',
+            'url'        => 'https://prodemnet.prodem.bo/login',
+            'target'     => '_blank'
         ],
-        [
-            'text'       => 'Certificaciones y Duplicados',
-            'icon_color' => 'info',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'Inspeccion Tecnica y B-SISA',
-            'icon_color' => 'secondary',
-            'url'        => '#',
-        ],
+
     ],
 
     /*

@@ -25,7 +25,7 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bancoModal">
             ✚ Añadir Extracto Bancario
             </button>
-
+            <a class="btn btn-danger" href="{{ url('home') }}">Volver Atras</a>
             @include('modal.bancomodal')
 
             <div class="pt-4">
@@ -36,11 +36,12 @@
                             <th>Fecha</th>
                             <th>Plataforma</th>
                             <th>Apertura⬇</th>
-                            <th>Total Depósitos ⬇</th>
-                            <th>Total Utilizado ⬆</th>
-                            <th>Total Retiros ⬆</th>
+                            <th>Depósitos ⬇</th>
+                            <th>Capital Utilizado ⬆</th>
+                            <th>Retiros ⬆</th>
                             <th>Cierre ⬆</th>
-                            <th>Total Movimientos</th>
+                            <th>Movimientos</th>
+                            <th>Comisión</th>
                             <th>Check</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -58,6 +59,7 @@
                                 <td class="table-warning">{{number_format($banco->total_retiros,2)}}</td>
                                 <td class="table-danger">{{ number_format($banco->monto_cierre,2) }}</td>
                                 <td class="table-secondary">{{$banco->total_movimientos}}</td>
+                                <td class="table-dark">{{number_format($banco->total_comision,2)}}</td>
                                 <td class="text-center"> 
                                     @if ($banco->diferencia=='0')
                                     <i class="fas fa-check-square btn-success" style="font-size: 1.7em;"></i>    

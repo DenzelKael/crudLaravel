@@ -8,7 +8,8 @@ use App\Http\Controllers\CuantificadorController;
 use App\Http\Controllers\ExtractoController;
 use App\Http\Controllers\PlataformaController;
 use App\Http\Controllers\ServicioController;
-use App\Http\Controllers\bancoController;
+use App\Http\Controllers\BancoController;
+use App\Http\Controllers\CajaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +28,16 @@ Route::get('/', function () {
 
 /*  Route::get('empleado/', [EmpleadoController::class,'index']); */
 
-Route::resource('banco', bancoController::class)->middleware('auth');
+Route::resource('banco', BancoController::class)->middleware('auth')->except(['show']);
+Route::get('banco/comission', [BancoController::class,'getComission']);
+
+
 /* Route::resource('archivo', ArchivoController::class)->middleware('auth');
  */Route::resource('extracto', ExtractoController::class)->middleware('auth');
 Route::resource('producto', ProductoController::class)->middleware('auth');
 Route::resource('plataforma', PlataformaController::class)->middleware('auth');
 Route::resource('servicio', ServicioController::class)->middleware('auth');
+Route::resource('caja', CajaController::class)->middleware('auth');
 
 Route::resource('cuantificador', CuantificadorController::class)->middleware('auth');
 //Route::get('cuantificador/pdf', CuantificadorController::class)->middleware('auth');
@@ -45,7 +50,7 @@ Route::get('empleado/{$id}', [EmpleadoController::class,'destroy']);
 
 
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('/', [bancoController::class, 'index'])->name('home')->middleware('auth');   
+    Route::get('/', [bancoController::class, 'index'])->name('home');   
 });
 
 

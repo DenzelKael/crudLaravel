@@ -15,7 +15,9 @@ class Banco extends Model
     protected $fillable=['id_user','id_plataforma','fecha_cierre','monto_apertura','monto_cierre','estado'];
 
  
-    
+    public function getBancoByFecha(String $fecha){
+        return self::where('fecha_cierre',$fecha)->with('plataforma')->get();
+    }
      
     public function user(){
         return $this->belongsTo(User::class, 'id_user');

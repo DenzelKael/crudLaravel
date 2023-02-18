@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\banco;
+use App\Models\Banco;
 use App\Models\Extracto;
 use App\Models\Plataforma;
 use Illuminate\Http\Request;
@@ -45,10 +45,11 @@ class BancoController extends Controller
         Banco::where('id', $banco['id'])->update([
             'monto_apertura' => $montos['inicio'],
             'monto_cierre'=> $montos['fin'],
-            'total_capital_utilizado'=> $montos['totales']['totalCapital'],
             'total_movimientos' => $montos['totales']['totalCantidad'],
+            'total_capital_utilizado'=> $montos['totales']['totalCapital'],
             'total_depositos' =>$montos['totales']['totalDepositos'],
             'total_retiros' =>$montos['totales']['totalRetiros'],
+            'total_comision' => $montos['totales']['totalComision'],
             'diferencia' => $montos['inicio']+$montos['totales']['totalDepositos']-$montos['totales']['totalRetiros']-$montos['totales']['totalCapital']-$montos['fin']
         ]);
      }
@@ -98,9 +99,21 @@ class BancoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+
+    public function getComission(Request $request)
     {
-        //
+        $fecha = $request->fecha;
+        $banco = new Banco();
+        $bancos = $banco->getBancoByFecha($fecha);
+        $totalComision = $bancos->sum('total_comision');
+
+        return response()->json([
+            'data'=> [
+                'total_comision' => $totalComision,
+                'bancos'=> $bancos
+            ]
+        ]);
     }
 
     /**

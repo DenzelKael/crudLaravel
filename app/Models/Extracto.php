@@ -32,6 +32,7 @@ class Extracto extends Model
      $totales['totalCapital']=0;
      $totales['totalDepositos']=0;
      $totales['totalRetiros']=0;
+     $totales['totalComision']=0;
         $datos['extractos'] = Extracto::obtenerTotalesParciales($id);
         
         foreach ($datos['extractos'] as $key => $value) {
@@ -41,6 +42,7 @@ class Extracto extends Model
         }
             $totales['totalCantidad']+=$value->cantidad;
             $totales['totalCapital']+=$value->cantidad*$value->servicio->costo;
+            $totales['totalComision']+=$value->cantidad*$value->servicio->diferencia;
         }
        // dd($totales);
         return $totales;
