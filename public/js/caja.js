@@ -51,22 +51,31 @@ class Caja{
             success: ()=>{
                 
                 $(this._cajaModal).modal('hide')
+                location.reload()
+            },
+            error: (error)=>{
+              alert(error.responseJSON.message)
             }
+            
 
         })
 
     }
 
+
+
     setHTMLBancos(bancos){
         $(this._extractos).empty()
         let html ='';
         bancos.forEach(banco => {
-            html='<div  class="prueba">'+banco.plataforma.nombre+' ='+banco.total_comision+'</div>'
+            html=`<div><span class="btn btn-primary">${banco.plataforma.nombre}</span> | 
+            <span class="btn btn-warning">Bs. ${banco.total_comision}</span></div></br>`
             $(this._extractos).append(html)
         });
        
 
     }
+
 
 }
 

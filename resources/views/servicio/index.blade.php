@@ -30,7 +30,7 @@
                     <th>Costo</th>
                     <th>Diferencia</th>
                     <th>Descripcion</th>
-                    <th>Acciones</th>
+               {{--      <th>Acciones</th> --}}
                 </tr>
             </thead>
             <tbody class="align-middle">
@@ -43,7 +43,7 @@
                         <td>{{ $servicio->costo }}</td>
                         <td class="table-info">{{ $servicio->diferencia }}</td>
                         <td>{{ $servicio->descripcion }}</td>
-                        <td>
+                        {{-- <td>
                             <a title="Editar" href="{{ url('banco/' . $servicio->id . '/edit') }}" class="btn btn-warning">
                                 <i class="fas fa-edit" aria-hidden="true"></i>
                             </a>
@@ -56,7 +56,7 @@
                                 </button>
                             </form> 
 
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>

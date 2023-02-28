@@ -10,6 +10,7 @@ use App\Http\Controllers\PlataformaController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\BancoController;
 use App\Http\Controllers\CajaController;
+use App\Http\Controllers\VentasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,36 +26,29 @@ use App\Http\Controllers\CajaController;
 Route::get('/', function () {
     return view('auth.login');
 });
-
-/*  Route::get('empleado/', [EmpleadoController::class,'index']); */
-
-Route::resource('banco', BancoController::class)->middleware('auth')->except(['show']);
+Auth::routes(['register'=>false, 'reset'=>false]); 
 Route::get('banco/comission', [BancoController::class,'getComission']);
 
 
-/* Route::resource('archivo', ArchivoController::class)->middleware('auth');
- */Route::resource('extracto', ExtractoController::class)->middleware('auth');
-Route::resource('producto', ProductoController::class)->middleware('auth');
-Route::resource('plataforma', PlataformaController::class)->middleware('auth');
-Route::resource('servicio', ServicioController::class)->middleware('auth');
-Route::resource('caja', CajaController::class)->middleware('auth');
-
-Route::resource('cuantificador', CuantificadorController::class)->middleware('auth');
-//Route::get('cuantificador/pdf', CuantificadorController::class)->middleware('auth');
-Auth::routes(['register'=>false, 'reset'=>false]); 
-/* Route::post('empleado/', [EmpleadoController::class,'store']);
-Route::get('empleado/{$id}', [EmpleadoController::class,'destroy']);
- */
-
-
-
-
 Route::group(['middleware'=>'auth'], function(){
-    Route::get('/', [bancoController::class, 'index'])->name('home');   
+        Route::get('/', [bancoController::class, 'index'])->name('home'); 
+        Route::resource('plataforma', PlataformaController::class);
+        Route::resource('servicio', ServicioController::class);
+        Route::get('producto/productos',[ProductoController::class,'productos'])->name('producto.productos');
+        Route::resource('producto', ProductoController::class);
+        Route::resource('banco', BancoController::class)->except(['show']);
+        Route::resource('extracto', ExtractoController::class);
+        Route::resource('caja', CajaController::class);
+        Route::resource('cuantificador', CuantificadorController::class);
+        Route::resource('ventas', VentasController::class); 
+
+        
 });
 
+//ruta para un futuro dashboard!
+Route::get('/home', [VentasController::class, 'index'])->name('home')->middleware('auth');
 
-/* Route::get('/archivo_home', [ArchivoController::class, 'home'])->name('archivo_home')->middleware('auth');
- */Route::get('/home', [bancoController::class, 'index'])->name('home')->middleware('auth');
 
 Auth::routes();
+
+

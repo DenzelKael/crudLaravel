@@ -37,7 +37,9 @@ class CajaController extends Controller
      */
     public function store(Request $request)
     {
+  
         
+
         $caja = Caja::create([
             'monto_apertura'=>$request->monto_apertura,
             'monto_cierre' => 0,
@@ -93,6 +95,7 @@ class CajaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Caja::destroy($id);
+        return redirect('/caja')->with('mensaje',"Caja Eliminada Correctamente");
     }
 }

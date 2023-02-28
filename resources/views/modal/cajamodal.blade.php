@@ -23,7 +23,7 @@
                         <input type="text" class="form-control" name="" id="id_user" readonly value="{{ Auth::user()->name }}">
                         <input type="text" class="form-control" name="id_user" id="id_user" hidden value="{{ Auth::user()->id }}">
                     </div>
-                    <div id="extractos">
+                    <div id="extractos" >
                       
                     </div>
                     <div class="mb-3">

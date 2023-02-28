@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('cajas', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_caja');
+            $table->date('fecha_caja')->unique();
             $table->float('monto_apertura');
             $table->float('monto_cierre')->nullable();
             $table->float('total_servicios');

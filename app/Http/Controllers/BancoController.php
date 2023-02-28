@@ -19,8 +19,9 @@ class BancoController extends Controller
     {
           
         $datos['bancos'] = Banco::select('*')->with('user')->with('plataforma')->get();
+  
         $datos['plataformas'] = Plataforma::pluck('nombre','id');
-        
+      
         return view('banco.index',$datos);
     }
 
@@ -124,7 +125,7 @@ class BancoController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -137,17 +138,14 @@ class BancoController extends Controller
     public function update(Request $request, $id)
     {
         $campos=[
-            'id_user' => 'required',
             'fecha_cierre' => 'required',
             'id_plataforma'=>'required',
-            'archivo'=>'required|max:10000|mimes:xlsx,xls,xlm,xla,xlc,xlt,xlw',
+            
             
         ];
         $mensaje=[
             'fecha_cierre.required'=>'La :attribute es requerida',
             'required'=>'El :attribute es requerido',
-            'archivo.required'=>'El archivo es requerido y debe ser una Hoja de Calculo',
-            'archivo.mimes' => 'El archivo debe ser en formato Excel'
         ];
         
         $this->validate($request,$campos,$mensaje);
@@ -163,7 +161,7 @@ class BancoController extends Controller
 
         Banco::where('id', '=', $id)->update($datosArchivo);
        
-        return redirect('/banco')->with('mensaje',"Archivo Actualizado Correctamente");
+        return redirect('/banco')->with('mensaje',"Extracto Bancario Actualizado Correctamente");
     }
 
     /**

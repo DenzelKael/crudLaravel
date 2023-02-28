@@ -93,19 +93,19 @@ class ExtractoImport implements ToModel, WithHeadingRow, ToCollection
                             'sigla' => $this->servicio->sigla,
 
                         ]);
-                        //echo $monto." - ";
-                        //echo $deposito;
-                        //echo "<br>";
+                       
                         if ($sw) {
                         if ($monto>=0) {
-                            $this->montos['inicio'] = (float) $monto + str_replace(',', '', trim($row['saldo']));
+                            $this->montos['inicio'] = str_replace(',', '', trim($row['saldo'])) - (float) $deposito;
                         }else{
-                            $this->montos['inicio'] = (float) $monto*(-1) + str_replace(',', '', trim($row['saldo']));
+                            $this->montos['inicio'] = str_replace(',', '', trim($row['saldo'])) + (float) $monto*(-1);
                         }
                             
                             $sw = !$sw;
                         }
+                     
                         $this->montos['fin'] = str_replace(',', '', trim($row['saldo']));
+                    
                     }
                 }
             } catch (\Throwable $th) {

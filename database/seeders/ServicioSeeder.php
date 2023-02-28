@@ -36,6 +36,17 @@ class ServicioSeeder extends Seeder
         $servicio->costo= 17;
         $servicio->diferencia = $servicio->precio - $servicio->costo;
         $servicio->save();
+
+        $servicio = new Servicio();
+        $servicio->nombre = "PAGO DE CEDULAS DE IDENTIDAD DIGITAL";
+        $servicio->sigla = "P_CI_DIG_25_UNIMOVIL";
+        $servicio->color = "danger";
+        $servicio->descripcion="N/D PAGO SEGIP MEDIANTE UNINET";
+        $servicio->id_plataforma = 1;
+        $servicio->precio = 25;
+        $servicio->costo= 20;
+        $servicio->diferencia = $servicio->precio - $servicio->costo;
+        $servicio->save();
         
         $servicio = new Servicio();
         $servicio->nombre = "PAGO DE LICENCIAS DE CONDUCIR - ABCP";

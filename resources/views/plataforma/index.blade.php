@@ -20,7 +20,7 @@
                     <th>Nombre</th>
                     <th>Descripcion</th>
                     <th>Saldo</th>
-                    <th>Acciones</th>
+                    {{-- <th>Acciones</th> --}}
                 </tr>
             </thead>
             <tbody class="align-middle">
@@ -30,7 +30,7 @@
                         <td class="table-primary" style="text-transform: uppercase">{{ $plataforma->nombre }}</td>
                         <td >{{ $plataforma->descripcion }}</td>
                         <td >{{ $plataforma->saldo }}</td>
-                        <td>
+                       {{--  <td>
                             <a title="Editar" href="{{ url('banco/' . $plataforma->id . '/edit') }}" class="btn btn-warning">
                                 <i class="fas fa-edit" aria-hidden="true"></i>
                             </a>
@@ -43,7 +43,7 @@
                                 </button>
                             </form> 
 
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>

@@ -351,6 +351,10 @@ return [
                     'text' => 'Productos',
                     'url'  => '/producto',
                 ],
+                [
+                    'text' => 'Ventas',
+                    'url'  => '/ventas',
+                ],
            /*      [
                     'text'    => 'level_one',
                     'url'     => '#',

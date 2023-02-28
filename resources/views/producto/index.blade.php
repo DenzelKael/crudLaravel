@@ -32,7 +32,7 @@
                     <th>Costo</th>
                     <th>Diferencia</th>
                     <th>Existencia</th>
-                    <th>Acciones</th>
+                  {{--   <th>Acciones</th> --}}
                 </tr>
             </thead>
             <tbody class="align-middle">
@@ -55,7 +55,7 @@
                             table-warning @endif">
                             {{ $producto->existencia }}</td>
             
-                        <td>
+                        {{-- <td>
                            
                             <a title="Editar" href="{{ url('banco/' . $producto->id . '/edit') }}" class="btn btn-warning">
                                 <i class="fas fa-edit" aria-hidden="true"></i>
@@ -70,7 +70,7 @@
                             </form> 
                         
 
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>

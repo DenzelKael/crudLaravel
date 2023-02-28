@@ -8,33 +8,44 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
      $datos['productos'] = Producto::paginate(10);
         return view('producto.index', $datos);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function productos(Request $request){
+
+        $term = $request->get('term');
+        
+        $querys = Producto::where('nombre','LIKE','%'.$term.'%')->get();
+
+        $data = [];
+
+        foreach ($querys as $query) {
+            $data[]=[
+                'label' => $query->nombre,
+                'id' => $query->id,
+                'value' => $query->id,
+                'precio_compra' => $query->costo,
+                'precio_venta' => $query->precio
+           
+            ];
+        }
+
+         return response()->json([
+            'data' => $data
+        ]); 
+    }
+
+
     public function create()
     {
         return view('producto.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
           
@@ -66,36 +77,20 @@ class ProductoController extends Controller
         return redirect('/producto')->with('mensaje',"Producto Agregado Correctamente");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $producto = Producto::findOrFail($id);
         return view('producto.edit', compact('producto'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $campos=[
@@ -133,12 +128,7 @@ class ProductoController extends Controller
         return redirect('/producto')->with('mensaje',"Producto Actualizado Correctamente");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
    

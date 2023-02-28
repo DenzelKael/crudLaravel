@@ -33,10 +33,14 @@
                     <thead class="thead-light">
                         <tr>
                             <th>Id</th>
-                            <th>Fecha</th>
-                            <th>Monto de Apertura</th>
+                            <th>Fecha Caja</th>
+                            <th>Apertura</th>
                             <th>Total Servicios</th>
-                            <th>Monto de Cierre</th>
+                            <th>Total Productos</th>
+                            <th>Otras Ventas</th>
+                            <th>Total Egresos</th>
+                            <th>Cierre</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
     
               {{--               <th>Retiros ⬆</th>
@@ -55,6 +59,9 @@
                                 <td class="table-secondary">{{ $caja->fecha_caja }}</td>
                                 <td>{{number_format($caja->monto_apertura,2)}}</td>
                                 <td class="table-info">{{ number_format($caja->total_servicios,2) }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td class="table-success">{{number_format($caja->monto_cierre,2)}}</td>
                                 
                        {{--          <td class="text-center"> 
@@ -66,12 +73,16 @@
                                     @endif
                                     </td> --}}
                                 {{-- <td class="text-center"><span class="btn btn-danger">{{ $caja->estado }}</span></td> --}}
+                                <td><span class="badge bg-danger">ABIERTO</span></td>
                                 <td>
-                                    <a title="Ver Detalle" href="{{url('extracto/'.$caja->id) }}" class="btn btn-info">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    <a title="Añadir Ingresos" href="{{url('ventas/'.$caja->id) }}" class="btn btn-success">
+                                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
                                     </a>
-                                    <a tittle="Ver Totales" href="{{url('cuantificador/'.$caja->id) }}" class="btn btn-success" >
-                                        <i class="fas fa-calculator"></i>   
+                                    <a title="Añadir Ingresos" href="{{url('ventas/'.$caja->id) }}" class="btn btn-success">
+                                        <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </a>
+                                    <a title="Añadir Egresos" href="{{url('egresos/'.$caja->id) }}" class="btn btn-danger" >
+                                        <i class="fa fa-minus"></i>   
                                     </a>
                                     
                                     <a title="Editar" href="{{ url('caja/' . $caja->id . '/edit') }}" class="btn btn-warning">

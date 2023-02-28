@@ -27,7 +27,7 @@
             </button>
             <a class="btn btn-danger" href="{{ url('home') }}">Volver Atras</a>
             @include('modal.bancomodal')
-
+            @include('modal.edit_banco_modal')
             <div class="pt-4">
                 <table id="bancos" class="table table-light">
                     <thead class="thead-light">
@@ -68,18 +68,18 @@
                                     <br><span class="text-danger">{{$banco->diferencia}}</span>
                                     @endif
                                     </td>
-                                <td class="text-center"><span class="btn btn-danger">{{ $banco->estado }}</span></td>
+                                <td><span class="badge bg-danger">{{ $banco->estado }}</span></td>
                                 <td>
                                     <a title="Ver Detalle" href="{{url('extracto/'.$banco->id) }}" class="btn btn-info">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
-                                    <a tittle="Ver Totales" href="{{url('cuantificador/'.$banco->id) }}" class="btn btn-success" >
+                                    <a title="Ver Totales" href="{{url('cuantificador/'.$banco->id) }}" class="btn btn-success" >
                                         <i class="fas fa-calculator"></i>   
                                     </a>
-                                    
-                                    <a title="Editar" href="{{ url('banco/' . $banco->id . '/edit') }}" class="btn btn-warning">
+                                    <a title="Editar" data-id="{{$banco->id}}" id="button-edit-banco" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editBancoModal">
                                         <i class="fas fa-edit" aria-hidden="true"></i>
                                     </a>
+                            
                                     <form action="{{ url('banco/' . $banco->id) }}" method="post" class="d-inline">
                                         @csrf
                                         {{ method_field('DELETE') }}
@@ -123,4 +123,5 @@
             }
         }
     </script>
+      <script src="{{asset('js/banco.js')}}"></script>
 @endsection
