@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PlataformaSeeder::class,
             ServicioSeeder::class,
-     
             ProductoSeeder::class
           
         ]);

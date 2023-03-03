@@ -16,7 +16,7 @@ class ProductoSeeder extends Seeder
     public function run()
     {
         $producto = new Producto();
-        $producto->truncate();
+       
         $producto->nombre = "BARBIJO";
         $producto->precio = 1;
         $producto->costo = 0.32;

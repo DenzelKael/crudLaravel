@@ -16,6 +16,7 @@ class EgresosSeeder extends Seeder
     public function run()
     {
         $egresos = new Egresos();
+ 
         $egresos->nombre = "ANTICIPO SUELDO SEBA";
         $egresos->observaciones = "a cuenta del sueldo seba";
         $egresos->save();

@@ -17,7 +17,7 @@ class PlataformaSeeder extends Seeder
     {
 
         $plataforma = new Plataforma();
-        $plataforma->truncate();
+
         $plataforma->nombre= "UNIMOVIL PLUS";
         $plataforma->descripcion="Banco Union";
         $plataforma->saldo = 3870.50;
