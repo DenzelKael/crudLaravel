@@ -108,10 +108,14 @@ class BancoController extends Controller
         $banco = new Banco();
         $bancos = $banco->getBancoByFecha($fecha);
         $totalComision = $bancos->sum('total_comision');
+        $totalCapitalUtilizado = $bancos->sum('total_capital_utilizado');
+        $totalDepositos  = $bancos->sum('total_depositos');
 
         return response()->json([
             'data'=> [
                 'total_comision' => $totalComision,
+                'total_capital_utilizado' => $totalCapitalUtilizado,
+                'total_depositos' => $totalDepositos,
                 'bancos'=> $bancos
             ]
         ]);

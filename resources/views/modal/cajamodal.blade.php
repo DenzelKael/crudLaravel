@@ -35,6 +35,18 @@
                         <label for="monto_inicial">Monto Inicial de Apertura de Caja:</label>
                         <input type="number" class="form-control" name="monto_inicial_caja" value="" id="monto_inicial_caja">
                     </div>
+                    <div class="mb-3">
+                        <label for="total_productos_caja">Total Venta de Productos:</label>
+                        <input type="number" class="form-control" name="total_productos_caja" value="" id="total_productos_caja">
+                    </div>
+                    <div class="mb-3">
+                        <label for="total_impresiones_caja">Total Copias e Impresiones:</label>
+                        <input type="number" class="form-control" name="total_impresiones_caja" value="" id="total_impresiones_caja">
+                    </div>
+                    <div class="mb-3">
+                        <label for="total_recargas_caja">Total recargas:</label>
+                        <input type="number" class="form-control" name="total_recargas_caja" value="" id="total_recargas_caja">
+                    </div>
 
             </div>
             <div class="modal-footer">

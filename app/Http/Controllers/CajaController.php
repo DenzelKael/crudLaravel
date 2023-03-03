@@ -39,12 +39,19 @@ class CajaController extends Controller
     {
   
         
-
+            
         $caja = Caja::create([
             'monto_apertura'=>$request->monto_apertura,
-            'monto_cierre' => 0,
+            'total_productos' => $request->total_productos,
+            'total_impresiones' =>$request->total_impresiones,
+            'total_recargas' => $request->total_recargas,
+            'monto_cierre' => $request->monto_apertura+$request->total_comision
+                            +$request->total_productos+$request->total_capital_utilizado
+                            +$request->total_impresiones+$request->total_recargas-$request->total_depositos,
             'fecha_caja' => $request->fecha,
             'total_servicios' => $request->total_comision,
+            'total_depositos' => $request->total_depositos,
+            'total_capital_utilizado' => $request->total_capital_utilizado,
             'bancos' => []
         ]);
         return response()->json([

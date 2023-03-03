@@ -32,13 +32,14 @@
                 <table id="cajas" class="table table-light">
                     <thead class="thead-light">
                         <tr>
-                            <th>Id</th>
                             <th>Fecha Caja</th>
                             <th>Apertura</th>
-                            <th>Total Servicios</th>
-                            <th>Total Productos</th>
-                            <th>Otras Ventas</th>
-                            <th>Total Egresos</th>
+                            <th>Productos</th>
+                            <th>Servicios</th>
+                            <th>Capital Utilizado</th>
+                            <th>Impresiones</th>
+                            <th>Recargas</th>
+                            <th>Depositos </th>
                             <th>Cierre</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -55,14 +56,15 @@
                     <tbody>
                         @foreach ($cajas as $caja)
                             <tr class="text-right">
-                                <td >{{ $caja->id }}</td>
-                                <td class="table-secondary">{{ $caja->fecha_caja }}</td>
-                                <td>{{number_format($caja->monto_apertura,2)}}</td>
-                                <td class="table-info">{{ number_format($caja->total_servicios,2) }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="table-success">{{number_format($caja->monto_cierre,2)}}</td>
+                                <td class="table-info">{{ $caja->fecha_caja }}</td>
+                                <td class="table-success">{{number_format($caja->monto_apertura,2)}}</td>
+                                <td class="table-success">{{ number_format($caja->total_productos,2) }}</td>
+                                <td class="table-success">{{ number_format($caja->total_servicios,2) }}</td>
+                                <td class="table-success">{{ number_format($caja->total_capital_utilizado,2) }}</td>
+                                <td class="table-success">{{ number_format($caja->total_impresiones,2) }}</td>
+                                <td class="table-success">{{ number_format($caja->total_recargas,2) }}</td>
+                                <td class="table-danger">{{ number_format($caja->total_depositos,2) }}</td>
+                                <td class="table-warning">{{number_format($caja->monto_cierre,2)}}</td>
                                 
                        {{--          <td class="text-center"> 
                                     @if ($caja->diferencia=='0')
@@ -81,7 +83,7 @@
                                     <a title="Añadir Ingresos" href="{{url('ventas/'.$caja->id) }}" class="btn btn-success">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                         </a>
-                                    <a title="Añadir Egresos" href="{{url('egresos/'.$caja->id) }}" class="btn btn-danger" >
+                                    <a title="Añadir Egresos" href="{{url('detalle_egresos/'.$caja->id) }}" class="btn btn-danger" >
                                         <i class="fa fa-minus"></i>   
                                     </a>
                                     

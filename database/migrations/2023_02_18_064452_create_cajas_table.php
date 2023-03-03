@@ -17,8 +17,13 @@ return new class extends Migration
             $table->id();
             $table->date('fecha_caja')->unique();
             $table->float('monto_apertura');
-            $table->float('monto_cierre')->nullable();
+            $table->float('total_productos')->nullable();
             $table->float('total_servicios');
+            $table->float('total_capital_utilizado');
+            $table->float('total_depositos');
+            $table->float('total_impresiones')->nullable();
+            $table->float('total_recargas')->nullable();
+            $table->float('monto_cierre')->nullable();
             $table->json('bancos')->nullable();
             $table->timestamps();
         });

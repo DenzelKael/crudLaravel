@@ -11,6 +11,8 @@ use App\Http\Controllers\ServicioController;
 use App\Http\Controllers\BancoController;
 use App\Http\Controllers\CajaController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\EgresosController;
+use App\Http\Controllers\DetalleEgresosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +43,8 @@ Route::group(['middleware'=>'auth'], function(){
         Route::resource('caja', CajaController::class);
         Route::resource('cuantificador', CuantificadorController::class);
         Route::resource('ventas', VentasController::class); 
+        Route::resource('egresos', EgresosController::class); 
+        Route::resource('detalle_egresos', DetalleEgresosController::class); 
 
         
 });

@@ -9,7 +9,17 @@ class Caja extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['monto_apertura','monto_cierre','fecha_caja','total_servicios','bancos'];
+    protected $fillable = [
+        'monto_apertura',
+        'total_productos',
+        'total_impresiones',
+        'total_recargas',
+        'total_capital_utilizado',
+        'monto_cierre',
+        'total_depositos',
+        'fecha_caja',
+        'total_servicios',
+        'bancos'];
     protected $casts = ['bancos'=>'json', 'monto_cierre'=>'float'];
 }
 
