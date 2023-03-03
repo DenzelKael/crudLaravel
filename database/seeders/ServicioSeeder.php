@@ -16,6 +16,7 @@ class ServicioSeeder extends Seeder
     public function run()
     {
         $servicio = new Servicio();
+        $servicio->truncate();
         $servicio->nombre = "PAGO DE CEDULAS DE IDENTIDAD";
         $servicio->sigla = "P_CI_22_UNIMOVIL";
         $servicio->color = "danger";
