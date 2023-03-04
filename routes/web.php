@@ -50,7 +50,7 @@ Route::group(['middleware'=>'auth'], function(){
 });
 
 //ruta para un futuro dashboard!
-Route::get('/home', [VentasController::class, 'index'])->name('home')->middleware('auth');
+// Route::get('/home', [VentasController::class, 'index'])->name('home')->middleware('auth');
 
 
 Auth::routes();
